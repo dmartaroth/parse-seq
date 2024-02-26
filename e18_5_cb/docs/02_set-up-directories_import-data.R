@@ -113,3 +113,4 @@ head(x=ncko[[]])
 
 # Quality control ---------------------------------------------------------
 prepro.plots(ctrl,ncko,figs)
+
