@@ -9,27 +9,64 @@ my_colors <- c("#FFB6C1", "#ADD8E6", "#FFD700", "#98FB98", "#FFA07A")
 # Custom theme for barplot
 custom_theme_bar <- function() {
   theme_minimal() +
-    theme(panel.background = element_rect(fill = "white"),
-      panel.grid.major = element_blank(),  # No major gridlines
-      panel.grid.minor = element_blank(),  # No minor gridlines
-      legend.position = "none",            # No legend
+    theme(
+      plot.background = element_rect(fill = "white"),
+      panel.background = element_rect(color = "white", fill = "white"),
+      panel.grid.major = element_blank(),           # No major gridlines
+      panel.grid.minor = element_blank(),           # No minor gridlines
+      legend.position = "none",                     # No legend
       axis.ticks = element_line(color = "black"),
-      axis.title = element_text(color = "black"),
-      plot.margin = margin(20, 20, 20, 20),
-      panel.border = element_rect(color = "black", fill = NA),
-      plot.caption = element_text(color = "black", hjust = 0),
-      # Use custom pastel colors
-      axis.text = element_text(size = 10),             # Size of axis text
-      text = element_text(),                           # Regular text
-      plot.title = element_text(face = "bold"),        # Bold plot title
-      axis.ticks.length = unit(0.2, "cm"),             # Shorten tick length
-      axis.line.x = element_line(colour = NA),         # Remove x-axis line
-      axis.line.y = element_line(colour = "black"),    # Set y-axis line color
-      panel.grid.major.y = element_blank(),
-      panel.grid.major.x = element_blank(),            # No vertical gridlines
-      axis.text.y = element_text(colour = "black")     # Set y-axis text color
+      axis.ticks.x = element_line(color = NA),
+      axis.title = element_text(color = "black",size = 8),
+      axis.text = element_text(size = 8),           # Size of axis text
+      axis.line.y = element_line(colour = NA), # Set y-axis line color
+      axis.line.x = element_line(colour = NA),  
+      axis.text.y = element_text(colour = "black"), # Set y-axis text color
+      axis.ticks.length = unit(0.2, "cm"),          # Shorten tick length
+      panel.border = element_blank(),   
+      panel.grid.major.y = element_line(colour = "gray", linetype = 3),  # Dashed horizontal gridlines
+      panel.grid.major.x = element_blank(),         # No vertical gridlines
+      text = element_text(colour = "black", size = 8),                        # Regular text
+      plot.title = element_text(face = "bold", size = 8,hjust = 0),     # Bold plot title
+      # plot.margin = margin(20, 20, 20, 20),         # Adjust plot margins
+      plot.caption = element_text(color = "black")  # Caption color and position
     )
 }
+
+# Custom theme for density plot
+custom_theme_density <- function() {
+  theme_minimal() +
+    theme(
+      # Background and Gridlines
+      plot.background = element_rect(fill = "white", color = NA),  # White background
+      panel.background = element_rect(fill = "white"),            # Panel background
+      panel.grid.major = element_blank(),                          # No major gridlines
+      panel.grid.minor = element_blank(),                          # No minor gridlines
+      panel.grid.major.y = element_line(colour = "gray", linetype = 3),  # Dashed horizontal gridlines
+      panel.grid.major.x = element_blank(),                        # No vertical gridlines
+      
+      # Axis
+      axis.ticks = element_line(color = "black"),                  # Color of axis ticks
+      axis.line.y = element_line(colour = "black"),                # Color of y-axis line
+      axis.line.x = element_line(colour = NA),                     # Remove x-axis line
+      axis.title = element_text(color = "black"),                  # Color of axis titles
+      axis.text = element_text(size = 10),                         # Size of axis text
+      axis.text.y = element_text(colour = "black"),                # Color of y-axis text
+      axis.ticks.length = unit(0.2, "cm"),                         # Shorten tick length
+      
+      # Panel
+      panel.border = element_rect(color = "black", fill = NA),     # Panel border
+      
+      # Text
+      plot.title = element_text(face = "bold", vjust = 0.5),       # Bold plot title, centered vertically
+      text = element_text(),                                       # Regular text
+      
+      # Legend and Caption
+      legend.position = "none",                                    # No legend
+      plot.caption = element_text(color = "black", hjust = 0)      # Caption color and position
+    )
+}
+
 # Functions
 #-------------------------------
 prepro.plots <- function(data_1, data_2, output_dir) {
@@ -53,13 +90,12 @@ prepro.plots <- function(data_1, data_2, output_dir) {
     plot <- bind_rows(data_1 = data_1, data_2 = data_2, .id = "Genotype") %>%
       ggplot(aes(x = sample, fill = sample)) +
       geom_bar(colour = "black", position = "dodge") +
-      labs(title = "Cell Counts") +
+      labs(title = "Cell Counts")+
+      custom_theme_bar() +
       facet_wrap(~ Genotype, scales = "free_x") +
-      theme_classic() +
-      custom_theme_bar()+
       scale_fill_manual(values = my_colors)
     
-    ggsave(filename = file.path(preprocessing_dir, sprintf("%02d_Cell_Counts.png", plot_number)), plot)
+    ggsave(filename = file.path(preprocessing_dir, sprintf("%02d_Cell_Counts.png", plot_number)), width = 3.5, height = 4.5, plot)
   }
   
   # Plot UMI Counts
@@ -74,7 +110,7 @@ prepro.plots <- function(data_1, data_2, output_dir) {
       ylab("Cell density") +
       geom_vline(xintercept = 500) +
       custom_theme_density() +
-      scale_fill_manual(values = c("blue", "firebrick1", "yellow", "greenyellow", "cornflowerblue", "black", "blanchedalmond", "blueviolet", "turquoise1", "olivedrab", "gray99", "indianred2", "gold", "thistle1", "gray54", "green4", "red2", "turquoise4", "khaki1", "hotpink", "deepskyblue", "blue4", "deeppink4")) +
+      scale_fill_manual(values = my_colors) +
       labs(title = "UMI Counts")
     
     ggsave(filename = file.path(preprocessing_dir, sprintf("%02d_UMI_Counts.png", plot_number)), plot)
