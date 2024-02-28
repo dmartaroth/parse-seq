@@ -2,8 +2,12 @@
 
 ### *e18_5_cb*
 
-▷ Add functions to prepro.plots for remaining QC metric plots
+✅︎ 01_set-up-directories_import-data.R functional
 
-▷ Write scripts for sample integration and QC
+▷ Clean up script 01
 
-▷ Write scripts for merged data processing
+▷ Write script for sample integration
+
+▷ Write script for merged data processing
+
+▷ Write script for cell cluster annotation
