@@ -4,8 +4,7 @@
 
 # Downloaded Parse Biosciences pipeline output from UBC bioinformatics team for
 # Bmp2 ctrl and ncko cranial base samples.
-# Date: Wed Feb 28 10:20:55 2024 ------------------
-
+# Date: Wed Feb 28 16:46:10 2024 ------------------
 
 # Packages, directories, and functions ------------------------------------
 
@@ -76,4 +75,29 @@ head(x=ncko[[]])
 # Quality control ---------------------------------------------------------
 prepro.plots(ctrl,ncko,figs)
 
+ctrl <- add_percent_mito(ctrl)
+ncko <- add_percent_mito(ncko)
 
+# Filtering low quality cells ---------------------------------------------
+# Select subset values from prepro.plots output, especially violin plots
+
+filtered_ctrl <- subset(x = ctrl,
+                        subset = (nFeature_RNA < 5500) &
+                          (nCount_RNA < 50000) &
+                          (percent.mito < 0.15))
+
+filtered_ncko <- subset(x = ncko,
+                        subset = (nFeature_RNA < 5500) &
+                          (nCount_RNA < 70000) &
+                          (percent.mito < 0.15))
+
+# Gene-level filtering
+filtered_ctrl <- genelvlfilt(filtered_ctrl)
+filtered_ncko <- genelvlfilt(filtered_ncko)
+
+filt.plots(filtered_ctrl,filtered_ncko,figs)
+
+
+# Save filtered cells -----------------------------------------------------
+saveRDS(filtered_ctrl, file = paste0(data.output,"/filtered_",control,"_",sample,".Rds"))
+saveRDS(filtered_ncko, file = paste0(data.output,"/filtered_",mutant,"_",sample,".Rds"))
