@@ -1,126 +1,16 @@
-# Load the necessary packages
-library(ggplot2)
-library(gridExtra)
-library(dplyr)
-library(crayon)
-
-# Custom colors
-my_colors <- c("#FFB6C1", "#ADD8E6", "#FFD700", "#98FB98", "#FFA07A")
-error <- red $ bold
-note1 <- red $ bold
-note2 <- black $ bold
-note3 <- blue $ bold
-
-# Custom theme for barplot
-custom_theme_bar <- function() {
-  theme_minimal() +
-    theme(
-      plot.background = element_rect(fill = "white"),
-      panel.background = element_rect(color = "white", fill = "white"),
-      panel.grid.major = element_blank(),           # No major gridlines
-      panel.grid.minor = element_blank(),           # No minor gridlines
-      legend.position = "none",                     # No legend
-      axis.ticks = element_line(color = "black"),
-      axis.ticks.x = element_line(color = NA),
-      axis.title = element_text(color = "black",size = 8),
-      axis.text = element_text(size = 8),           # Size of axis text
-      axis.line.y = element_line(colour = NA), # Set y-axis line color
-      axis.line.x = element_line(colour = NA),  
-      axis.text.y = element_text(colour = "black"), # Set y-axis text color
-      axis.ticks.length = unit(0.2, "cm"),          # Shorten tick length
-      panel.border = element_blank(),   
-      panel.grid.major.y = element_line(colour = "gray", linetype = 3),  # Dashed horizontal gridlines
-      panel.grid.major.x = element_blank(),         # No vertical gridlines
-      text = element_text(colour = "black", size = 8),                        # Regular text
-      plot.title = element_text(face = "bold", size = 8,hjust = 0),     # Bold plot title
-      # plot.margin = margin(20, 20, 20, 20),         # Adjust plot margins
-      plot.caption = element_text(color = "black")  # Caption color and position
-    )
-}
-
-# Custom theme for density plot
-custom_theme_density <- function() {
-  theme_minimal() +
-    theme(
-      # Background and Gridlines
-      plot.background = element_rect(fill = "white", color = NA),  # White background
-      panel.background = element_rect(fill = "white"),            # Panel background
-      panel.grid.major = element_blank(),                          # No major gridlines
-      panel.grid.minor = element_blank(),                          # No minor gridlines
-      panel.grid.major.y = element_line(colour = "gray", linetype = 3),  # Dashed horizontal gridlines
-      panel.grid.major.x = element_blank(),                        # No vertical gridlines
-      
-      # Axis
-      axis.ticks = element_line(color = "black"),                  # Color of axis ticks
-      axis.line.y = element_line(colour = "black"),                # Color of y-axis line
-      axis.line.x = element_line(colour = NA),                     # Remove x-axis line
-      axis.title = element_text(color = "black"),                  # Color of axis titles
-      axis.text = element_text(size = 10),                         # Size of axis text
-      axis.text.y = element_text(colour = "black"),                # Color of y-axis text
-      axis.ticks.length = unit(0.2, "cm"),                         # Shorten tick length
-      
-      # Panel
-      panel.border = element_rect(color = NA, fill = NA),     # Panel border
-      
-      # Text
-      plot.title = element_text(face = "bold", vjust = 0.5),       # Bold plot title, centered vertically
-      text = element_text(),                                       # Regular text
-      
-      # Legend and Caption
-      legend.position = "right",                                    # No legend
-      plot.caption = element_text(color = "black", hjust = 0)      # Caption color and position
-    )
-}
-
-# Custom theme for scatter plots
-custom_theme_scatter <- function() {
-  theme_minimal() +
-    theme(
-      # Background and Gridlines
-      plot.background = element_rect(fill = "white", color = NA),  # White background
-      panel.background = element_rect(fill = "white"),            # Panel background
-      panel.grid.major = element_blank(),                          # No major gridlines
-      panel.grid.minor = element_blank(),                          # No minor gridlines
-      
-      # Axis
-      axis.line = element_line(color = "black"),                   # Color of axis lines
-      axis.title = element_text(color = "black"),                  # Color of axis titles
-      axis.text = element_text(color = "black", size = 8),         # Size and color of axis text
-      
-      # Legend and Caption
-      legend.position = "none",                                    # No legend
-      plot.caption = element_text(color = "black", hjust = 0.5),    # Caption color and position
-      
-      # Remove axis ticks
-      axis.ticks = element_blank()                                 # No axis ticks
-    )
-}
-
-# Custom violin plot theme
-custom_theme_violin <- function() {
-  theme_minimal() +
-    theme(
-      legend.position = "none",  # Remove legend
-      panel.background = element_rect(fill = "white"),  # White background for panels
-      panel.grid.major.y = element_line(colour = "grey98"),
-      panel.grid.major.x = element_blank(),
-      panel.grid.minor = element_blank(),
-      axis.line = element_line(color = "black"),  # Color of axis lines
-      axis.title = element_text(color = "black"),  # Color of axis titles
-      axis.text = element_text(color = "black"),  # Color of axis text
-      axis.ticks = element_line(color = "black"),  # Color of axis ticks
-      text = element_text(color = "black"),  # Color of text
-      plot.title = element_text(face = "bold", hjust = 0.5),  # Bold plot title, centered
-      plot.caption = element_text(hjust = 0)  # Caption position
-    )
-}
-# Functions
-#-------------------------------
+# ## ######################################## ## #
+#                    FUNCTIONS                   #
+# ## ######################################## ## #
 
 # Custom function to format labels in scientific notation if digits are more than 4
 format_labels <- function(x) {
   ifelse(abs(x) >= 10000, format(x, scientific = TRUE), format(x))
 }
+
+
+
+# prepro.plots ------------------------------------------------------------
+
 
 prepro.plots <- function(data_1, data_2, output_dir) {
   plot_number <- 0  # Starting plot number
@@ -248,7 +138,7 @@ prepro.plots <- function(data_1, data_2, output_dir) {
     )
   }
   
-  # Function to create QC violin plots 
+  # Function to generate QC violin plots 
   generate_QC_violin_plots <- function(output_dir, data_1, data_2, plot_number) {
     cat((green("\nPlotting QC Violin plots \n")))
     
@@ -276,36 +166,70 @@ prepro.plots <- function(data_1, data_2, output_dir) {
       .id = "sample"
     )
     
-    # Function to generate violin plots
-    # Function to generate violin plots with dots and without legend
-    library(gridExtra)
-    
-    # Function to generate violin plots with dots and without legend
+    # Function to generate violin plots with dynamically focused zoom
     generate_violin_plot <- function(data, feature, title) {
-      ggplot(data, aes(x = sample, y = !!sym(feature), fill = sample)) +
-        geom_violin(alpha = 0.8) +
-        geom_point(position = position_jitter(width = 0.2), size = 0.1, alpha = 0.4, aes(color = sample)) +  # Add dots with jitter, adjust transparency, and set color aesthetic
+      # Main violin plot
+      violin_plot <- ggplot(data, aes(x = sample, y = !!sym(feature), fill = sample)) +
+        geom_violin(alpha = 0.8, position = position_dodge(width = 0.6)) +  # Adjust width of violins and position them closer
+        geom_point(position = position_jitter(width = 0.3), size = 0.3, alpha = 0.4, aes(color = sample)) +  # Add dots with jitter, adjust transparency, and set color aesthetic
         scale_fill_manual(values = my_colors) +
         scale_color_manual(values = my_colors) +  
         scale_y_continuous(labels = format_labels) +  # Apply custom label formatting for y-axis
         custom_theme_violin() +
         ggtitle(title)
+      
+      # Dynamically determine zoom range based on data distribution
+      density <- density(data[[feature]])
+      max_density <- max(density$y)
+      density_threshold <- 0.5 * max_density  # 50% of maximum density
+      density_peaks <- which(density$y >= density_threshold)  # Find regions with density above threshold
+      if (length(density_peaks) > 1) {
+        peak_values <- density$x[density_peaks]
+        upper_border <- max(peak_values)  # Focus on the highest peak
+      } else {
+        upper_border <- density$x[density_peaks]
+      }
+      buffer <- 0.15 * (max(data[[feature]]) - min(data[[feature]]))  # 15% buffer
+      zoomed_in_range <- c(0, upper_border + buffer)  # Focus on upper border with a buffer
+      
+      # Darker colors for points
+      darker_colors <- alpha(my_colors, 0.8)  # Adjust alpha for darker points
+      
+      # Zoomed-in violin plot
+      zoomed_in_plot <- ggplot(data, aes(x = sample, y = !!sym(feature), fill = sample)) +
+        geom_violin(alpha = 0.8, position = position_dodge(width = 0.6)) +
+        geom_point(position = position_jitter(width = 0.3), size = 0.3, alpha = 0.6, aes(color = sample)) +  # Adjust point size and alpha for darker points
+        scale_fill_manual(values = my_colors) +
+        scale_color_manual(values = darker_colors) +  # Use darker colors for points
+        scale_y_continuous(labels = format_labels, limits = zoomed_in_range) +  # Adjust y-axis limits
+        custom_theme_violin() +
+        ggtitle(paste("zoom", title))
+      
+      # Red rounded rectangular outline to indicate zoom region on the original plot
+      rect_plot <- geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = min(zoomed_in_range), ymax = max(zoomed_in_range)), 
+                             color = "black", fill = NA, linetype = "dashed", size = 0.1, 
+                             inherit.aes = FALSE, 
+                             lineend = "round", 
+                             lwd = 0.4, lty = 2, 
+                             dash = c(3, 5))
+      
+      # Add the rectangle to the main violin plot
+      violin_plot <- violin_plot + rect_plot
+      
+      return(list(violin_plot, zoomed_in_plot))
     }
     
     # Features to plot
     features <- c("nFeature_RNA", "nCount_RNA", "percent.mt")
     
     # Create and save violin plots for each feature arranged in a grid
-    pdf(file.path(output_dir, sprintf("%02d_b_QC_violin_plots.pdf", plot_number)), width=10, height=4, useDingbats=FALSE)  # Adjust width and height as needed
-    grid.arrange(
-      generate_violin_plot(plot_data, features[1], paste(features[1])),
-      generate_violin_plot(plot_data, features[2], paste(features[2])),
-      generate_violin_plot(plot_data, features[3], paste(features[3])),
-      nrow = 1, ncol = 3
-    )
+    pdf(file.path(output_dir, sprintf("%02d_b_QC_violin_plots.pdf", plot_number)), width=6, height=3, useDingbats=FALSE)  # Adjust width and height as needed
+    for (i in 1:length(features)) {
+      plots <- generate_violin_plot(plot_data, features[i], paste(features[i]))
+      grid.arrange(plots[[1]], plots[[2]], nrow = 1, ncol = 2)
+    }
     invisible(dev.off())  # Close the PDF device
   }
-  
   
   
   # Increment plot number
