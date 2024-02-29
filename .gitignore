@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 /e18_5_cb/raw-data/
+*.Rds
