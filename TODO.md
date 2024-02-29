@@ -6,8 +6,6 @@
 
 ▷ Clean up script 01
 
-▷ Write script for sample integration
-
-▷ Write script for merged data processing
+✅︎ 02_merge_normalize_integrate.R functional
 
 ▷ Write script for cell cluster annotation
