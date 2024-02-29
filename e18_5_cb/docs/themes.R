@@ -111,3 +111,38 @@ custom_theme_violin <- function() {
       plot.caption = element_text(hjust = 0)  # Caption position
     )
 }
+
+
+# Define a custom color palette with pastel contrasting colors
+pastel_palette <- c("#7EBDC2", "#D99B82", "#C7CC8F", "#B7A4DB", "#FFB5B5", "#8FC1A9", "#FFD966", "#B2A39E", "#C9ADA7", "#A5B9C4",
+                    "#E6B0C2", "#7F8C8D", "#FADBD8", "#ABEBC6", "#D5DBDB", "#F5CBA7", "#E59866", "#641E16", "#F8C471", "#D35400",
+                    "#2E4053", "#6C3483", "#2980B9", "#7D3C98", "#F4D03F", "#1F618D", "#6E2C00", "#B3B6B7", "#154360", "#FAD7A0",
+                    "#9A7D0A", "#873600", "#DC7633", "#4A235A", "#424949", "#8E44AD", "#1B4F72", "#CB4335", "#76448A", "#2E86C1",
+                    "#F1C40F", "#F1948A", "thistle3")
+
+# Define the custom theme for UMAP plots
+umap_theme <- function() {
+  theme_void() +
+    theme(
+      panel.background = element_rect(fill = "white", color = NA),    # Background color
+      axis.line = element_line(color = "black", linewidth = 0.5),          # Customize axis line
+      axis.text = element_text(size = 10),                            # Customize axis text size
+      axis.title = element_text(size = 10),                            # Customize axis title size
+      axis.ticks = element_line(color = "black", linewidth = 0.5),         # Customize axis ticks
+      panel.grid.major = element_blank(),                             # Remove major gridlines
+      panel.grid.minor = element_blank(),                             # Remove minor gridlines
+      plot.title = element_text( face = "bold",size = 10, hjust = 0.5),              # Title font size and alignment
+      plot.caption = element_text(size = 10, hjust = 0.5, face = "bold"),            # Caption font size and alignment
+      plot.margin = margin(10, 10, 10, 10),                           # Set plot margins
+      plot.background = element_rect(fill = "white", color = NA),     # Background color
+      plot.title.position = "plot",                                  # Title position
+      plot.caption.position = "plot",                                # Caption position
+      plot.tag.position = "plot",                                    # Tag position
+      legend.position = "right",                                     # Move legend to the right
+      legend.box.margin = margin(5, 5),                               # Adjust margin around legend box
+      legend.spacing.y = unit(0.1, "cm"),                             # Adjust vertical spacing between legend items
+      legend.text = element_text(size = 8),                           # Adjust legend text size
+      legend.title = element_text(size = 10),                         # Adjust legend title size
+      axis.title.y = element_text(angle = 90),          # Rotate y-axis label to be bottom-to-top
+    )
+}
