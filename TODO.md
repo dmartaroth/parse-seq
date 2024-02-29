@@ -8,4 +8,6 @@
 
 ✅︎ 02_merge_normalize_integrate.R functional
 
+▷ Clean up script 02
+
 ▷ Write script for cell cluster annotation
