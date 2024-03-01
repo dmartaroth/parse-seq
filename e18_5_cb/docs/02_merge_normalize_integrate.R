@@ -77,19 +77,38 @@ merged_sample <-
 merged_sample[["RNA"]] <- JoinLayers(merged_sample[["RNA"]]) # re-join layers after integration
 
 merged_sample <- FindNeighbors(merged_sample, reduction = "integrated.cca", dims = 1:30)
-merged_sample <- FindClusters(merged_sample, resolution = 0.6)
 
-merged_sample <- RunUMAP(merged_sample, dims = 1:30, reduction = "integrated.cca")
+merged_sample <- FindClusters(merged_sample, verbose=FALSE,
+  resolution= c(0.05, 0.08, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 1)
+)
 
-plot <- DimPlot(merged_sample, reduction = "umap", group.by = c("genotype", "seurat_clusters")) +
-  umap_theme() + scale_color_manual(values = pastel_palette) 
+
+
+(plot <- clustree(merged_sample, prefix = "RNA_snn_res.") )
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(integration_dir, sprintf("%02d_integrated-cca_umap.png", plot_number)), width = 8, height = 3, plot)
+ggsave(filename = file.path(integration_dir, sprintf("%02d_integrated_UMAP_clustree.png", plot_number)), width = 8, height = 9, plot)
+
+merged_sample <- RunUMAP(merged_sample, dims = 1:30, reduction = "integrated.cca")
+
+(plot <- DimPlot(merged_sample, reduction = "umap", group.by = c("genotype", "RNA_snn_res.0.05"))+
+  umap_theme() + scale_color_manual(values = pastel_palette)) 
+
+# Save plot
+plot_number <- plot_number + 1
+ggsave(filename = file.path(integration_dir, sprintf("%02d_integrated-cca_umap_res.0.05.png", plot_number)), width = 8, height = 3, plot)
+
+(plot <- DimPlot(merged_sample, reduction = "umap", group.by = c("RNA_snn_res.0.05","RNA_snn_res.0.6"))+
+  umap_theme() + scale_color_manual(values = pastel_palette)) 
+
+# Save plot
+plot_number <- plot_number + 1
+ggsave(filename = file.path(integration_dir, sprintf("%02d_integrated-cca_umap_res.0.05_0.6.png", plot_number)), width = 8, height = 3, plot)
+
 
 # Visualize conditions side by side
-plot <- DimPlot(merged_sample, reduction = "umap", split.by = "genotype")+
+plot <- DimPlot(merged_sample, reduction = "umap", split.by = "genotype", group.by = "RNA_snn_res.0.05")+
   umap_theme() + scale_color_manual(values = pastel_palette) 
 
 # Save plot
