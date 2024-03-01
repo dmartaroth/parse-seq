@@ -146,3 +146,42 @@ umap_theme <- function() {
       axis.title.y = element_text(angle = 90),          # Rotate y-axis label to be bottom-to-top
     )
 }
+
+
+# Custom feature plot theme
+theme_feature_plot <- function(base_size = 12, base_family = "") {
+  theme_void() +
+    theme(
+      panel.background = element_rect(fill = "white", color = NA),    # Background color
+      axis.line = element_line(color = "black", linewidth = 0.5),          # Customize axis line
+      axis.text = element_text(size = rel(0.8)),                            # Customize axis text size
+      axis.title = element_text(size = rel(0.9)),                            # Customize axis title size
+      axis.ticks = element_line(color = "black", linewidth = 0.5),         # Customize axis ticks
+      panel.grid.major = element_blank(),                             # Remove major gridlines
+      panel.grid.minor = element_blank(),                             # Remove minor gridlines
+      plot.title = element_text(face = "bold", size = rel(1), hjust = 0.5),              # Title font size and alignment
+      plot.caption = element_text(size = rel(0.8), hjust = 0.5, face = "bold"),            # Caption font size and alignment
+      plot.margin = margin(10, 10, 10, 10),                           # Set plot margins
+      plot.background = element_rect(fill = "white", color = NA),     # Background color
+      plot.title.position = "plot",                                  # Title position
+      plot.caption.position = "plot",                                # Caption position
+      plot.tag.position = "plot",                                    # Tag position
+      legend.position = "right",                                     # Move legend to the right
+      legend.box.margin = margin(5, 5),                               # Adjust margin around legend box
+      legend.spacing.y = unit(0.1, "cm"),                             # Adjust vertical spacing between legend items
+      legend.text = element_text(size = rel(0.8)),                           # Adjust legend text size
+      legend.title = element_text(size = rel(0.9)),                         # Adjust legend title size
+      axis.title.y = element_text(angle = 90),          # Rotate y-axis label to be bottom-to-top
+    )
+}
+
+
+# Custom dotplot theme
+custom_dotplot_theme <- function() {
+  theme(plot.background = element_rect(fill = "white"),
+    axis.text.x = element_text(face = "italic", size = 10), 
+    axis.text.y = element_text(size = 10), 
+    legend.text = element_text(size = 8),  
+    legend.title = element_text(size = 8)  
+  )
+}
