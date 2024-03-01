@@ -10,4 +10,6 @@
 
 ▷ Clean up script 02
 
+▷ Create saveplots function to replace save plot chunks in scripts 02 and 03
+
 ▷ Write script for cell cluster annotation
