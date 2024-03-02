@@ -558,3 +558,97 @@ genelvlfilt <- function(object) {
   
   return(filtered_seurat)
 }
+
+
+# Define a function to find top markers for each cluster
+findTopMarkers <- function(obj, cluster_names) {
+  top_markers <- lapply(cluster_names, function(cluster) {
+    response <- FindMarkers(obj, 
+                            ident.1 = paste(cluster, "Bmp2_ctrl", sep = "_"), 
+                            ident.2 = paste(cluster, "Bmp2_ncko", sep = "_"), 
+                            verbose = FALSE)
+    top3 <- response %>%
+      slice_max(n = 3, order_by = avg_log2FC)
+    return(top3)
+  })
+  names(top_markers) <- cluster_names
+  return(top_markers)
+}
+
+
+# Define a function to extract and order top markers
+extractTopMarkers <- function(all_top_markers) {
+  top_markers <- lapply(all_top_markers, function(markers) {
+    markers <- markers[order(markers$avg_log2FC, decreasing = TRUE), ]
+    return(markers)
+  })
+  return(top_markers)
+}
+
+
+# Define a function to collect all top markers
+collectAllTopMarkers <- function(all_top_markers) {
+  # Extract and order top markers
+  ordered_top_markers <- extractTopMarkers(all_top_markers)
+  
+  # Initialize an empty character vector to store top markers
+  all_top_markers_combined <- character()
+  
+  # Collect top markers for each cluster
+  for (cluster_name in names(ordered_top_markers)) {
+    cluster_top_markers <- rownames(ordered_top_markers[[cluster_name]])
+    all_top_markers_combined <- c(all_top_markers_combined, cluster_top_markers)
+  }
+  
+  # Remove duplicates
+  all_top_markers_combined <- unique(all_top_markers_combined)
+  
+  return(all_top_markers_combined)
+}
+
+# Define a function to collect top positive markers
+collectTopPosMarkers <- function(all_top_pos_markers) {
+  # Extract and order top markers
+  ordered_top_pos_markers <- extractTopPosMarkers(all_top_pos_markers)
+  
+  # Initialize an empty character vector to store top markers
+  all_top_pos_markers_combined <- character()
+  
+  # Collect top markers for each cluster
+  for (cluster_name in names(ordered_top_pos_markers)) {
+    cluster_top_pos_markers <- rownames(ordered_top_pos_markers[[cluster_name]])
+    all_top_pos_markers_combined <- c(all_top_pos_markers_combined, cluster_top_pos_markers)
+  }
+  
+  # Remove duplicates
+  all_top_pos_markers_combined <- unique(all_top_pos_markers_combined)
+  
+  return(all_top_pos_markers_combined)
+}  
+
+# Define a function to find top positive markers for each cluster 
+findTopPosMarkers <- function(obj, cluster_names) {
+  top_pos_markers <- lapply(cluster_names, function(cluster) {
+    response <- FindMarkers(obj, 
+                            ident.1 = paste(cluster, "Bmp2_ctrl", sep = "_"), 
+                            ident.2 = paste(cluster, "Bmp2_ncko", sep = "_"),
+                            min.pct = 0.25,
+                            logfc.threshold = 0.25)
+    top3 <- response %>%
+      slice_max(n = 3, order_by = avg_log2FC)
+    return(top3)
+  })
+  names(top_pos_markers) <- cluster_names
+  return(top_pos_markers)
+}
+
+
+# Define a function to extract and order top positive markers
+extractTopPosMarkers <- function(all_top_pos_markers) {
+  top_pos_markers <- lapply(all_top_pos_markers, function(markers) {
+    markers <- markers[order(markers$avg_log2FC, decreasing = TRUE), ]
+    return(markers)
+  })
+  return(top_pos_markers)
+}
+
