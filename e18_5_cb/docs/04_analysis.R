@@ -145,7 +145,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_top-pos-response-markers
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.1_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.1_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 # chondro.2
 (plot <-
@@ -164,7 +164,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.1_DEG_featureplo
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.2_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.2_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 # chondro.3
 (plot <-
@@ -183,7 +183,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.2_DEG_featureplo
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.3_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.3_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 # chondro.4
 (plot <-
@@ -202,7 +202,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.3_DEG_featureplo
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.4_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.4_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 # mes
 (plot <-
@@ -221,7 +221,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.4_DEG_featureplo
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_mes_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_mes_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 
 # osteo.1
@@ -241,7 +241,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_mes_DEG_featureplots.png
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_osteo.1_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_osteo.1_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 # osteo.2
 (plot <-
@@ -260,7 +260,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_osteo.1_DEG_featureplots
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_osteo.2_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_osteo.2_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 
 # osteoclasts
@@ -280,7 +280,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_osteo.2_DEG_featureplots
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_osteocl_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_osteocl_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 # unknown.1
 (plot <-
@@ -299,7 +299,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_osteocl_DEG_featureplots
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_unknown.1_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_unknown.1_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 
 # unknown.2
@@ -319,7 +319,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_unknown.1_DEG_featureplo
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_unknown.2_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_unknown.2_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 
 # unknown.3
@@ -339,7 +339,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_unknown.2_DEG_featureplo
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_unknown.3_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_unknown.3_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 
 # vasc
@@ -359,7 +359,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_unknown.3_DEG_featureplo
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_vasc_DEG_featureplots.png", plot_number)), width = 4, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_vasc_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 
 
