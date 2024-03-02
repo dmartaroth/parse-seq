@@ -74,7 +74,8 @@ osteoclasts <- c("Ctsk","Mmp9","Pheta1","Cd44")
 vascular <- c("Mcam","Vwf","Pecam1","Pdgfrb")
 myeloid_lymphocyte <- c("Pou2f2","Il1rl1","Gata2")
 neurons_gli1 <- c("Neurod1","Cplx3","Otx2","Gfra3","Sox10","Foxd3")
-
+erythrocytes <- c("Hba-a1","Hba-a2","Hbb-bs","Gypa","Gybp","Alas2","Klf1","Slc25a37","Slc2a1")
+smoothmuscle <- c("Acta2","Tagln","Myh11","Des")
 
 # Progenitors
 
@@ -231,6 +232,45 @@ ggsave(filename = file.path(clustering_dir, sprintf("%02d_myeloid_lymphocyte_fea
 plot_number <- plot_number + 1
 ggsave(filename = file.path(clustering_dir, sprintf("%02d_neurons_glia_featureplots.png", plot_number)), width = 6, height = 5, plot)
 
+# Erythrocytes
+(plot <-
+    FeaturePlot_scCustom(
+      seurat_object = clustered_renamed,
+      reduction = "umap",
+      na_cutoff = 0,
+      features = erythrocytes,
+      colors_use = c(
+        "floralwhite",
+        "lavenderblush",
+        "plum1",
+        "orchid",
+        "orchid4",
+        "darkorchid4")))
+
+# Save plot
+plot_number <- plot_number + 1
+ggsave(filename = file.path(clustering_dir, sprintf("%02d_erythrocytes_featureplots.png", plot_number)), width = 6, height = 5, plot)
+
+# Smooth muscle
+(plot <-
+    FeaturePlot_scCustom(
+      seurat_object = clustered_renamed,
+      reduction = "umap",
+      na_cutoff = 0,
+      features = smoothmuscle,
+      colors_use = c(
+        "floralwhite",
+        "lavenderblush",
+        "plum1",
+        "orchid",
+        "orchid4",
+        "darkorchid4")))
+
+# Save plot
+plot_number <- plot_number + 1
+ggsave(filename = file.path(clustering_dir, sprintf("%02d_smoothmuscle_featureplots.png", plot_number)), width = 6, height = 5, plot)
+
+
 
 # Based on these plots, identify potential clusters at low resolution
 
@@ -252,7 +292,7 @@ ggsave(filename = file.path(clustering_dir, sprintf("%02d_UMAP_lowres_annotated_
 
 ## High res cluster annotation ---------------------------------------------
 highres.clusters <- "RNA_snn_res.0.6"
-(plot <- DimPlot(clustered_renamed, reduction = "umap", group.by = highres.clusters)+
+(plot <- DimPlot(clustered_renamed, reduction = "umap", label = TRUE,group.by = highres.clusters)+
     umap_theme() + scale_color_manual(values = pastel_palette)) 
 
 # Save plot
@@ -274,9 +314,18 @@ all_markers_pct <- all_markers_pct %>%
 
 write.csv(all_markers_pct, file = here(data.output, "0.6res_all_markers_pct.csv"))
 
+top50_markers_pct <- all_markers_pct %>%
+  group_by(cluster) %>%
+  arrange(desc(avg_log2FC)) %>% 
+  top_n(n=50, wt = avg_log2FC)%>%
+  arrange(cluster)
+
+write.csv(top50_markers_pct, file = here(data.output, "0.6res_top50_markers_pct.csv"))
+
 # Extract the top N marker genes per cluster
 top_3 <- Extract_Top_Markers(marker_dataframe = all_markers_pct, num_genes = 3, named_vector = FALSE,make_unique = TRUE,rank_by = "avg_log2FC")
 write.csv(top_3, file = here(data.output, "0.6res_top3_markers_pct.csv"))
+
 
 
 (plot <- DotPlot( object = clustered_renamed,
@@ -297,14 +346,31 @@ ggsave(filename = file.path(clustering_dir, sprintf("%02d_DotPlot_top3_markers_%
 # Create simple annotation files
 # Create_Cluster_Annotation_File(file_path = data.output, file_name = "0.6res_cluster_annotation")
 
-# annotation_info <- Pull_Cluster_Annotation(annotation = here(data.output,"0.05res_cluster_annotation.csv"))
-# 
-# # Rename clusters
-# clustered_renamed_updated <- Rename_Clusters(seurat_object = clustered_renamed, new_idents = annotation_info$new_cluster_idents, meta_col_name = "lowres_Idents")
-# 
-# (plot <- DimPlot(clustered_renamed, reduction = "umap", label = TRUE)+
-#     umap_theme() + scale_color_manual(values = pastel_palette)) 
-# 
-# # Save plot
-# plot_number <- plot_number + 1
-# ggsave(filename = file.path(clustering_dir, sprintf("%02d_UMAP_highres_annotated_%s.png", plot_number, highres.clusters)), width = 6, height = 3, plot)
+annotation_info <- Pull_Cluster_Annotation(annotation = here(data.output,"0.6res_cluster_annotation.csv"))
+
+Idents(clustered_renamed_updated) <- clustered_renamed_updated$RNA_snn_res.0.6
+# Rename clusters
+annotated_integrated <- Rename_Clusters(seurat_object = clustered_renamed_updated, new_idents = annotation_info$new_cluster_idents)
+
+Idents(annotated_integrated) <- factor(x = Idents(annotated_integrated), levels = sort(levels(annotated_integrated)))
+
+my_colors =  c("#E6B0C2","#FADBD8","#FFB5B5","pink3", "thistle1",
+               "#ABEBC6",  "powderblue","red2", 
+               "#B7A4DB",  "#76448A", "#F1948A", "thistle3","#2E86C1", 
+               "#424949","#9A7D0A","#1C7F82", "steelblue","#7EBDC2",
+               "#F4D03F","#C7CC8F", "#1B4F72","#CB4335",
+               "darkgreen", "#873600", "#4A235A", "#F1C41F",
+             "red2")
+(plot <- DimPlot(annotated_integrated, reduction = "umap", label = FALSE)+
+    umap_theme() + scale_color_manual(values = my_colors))
+
+# Save plot
+plot_number <- plot_number + 1
+ggsave(filename = file.path(clustering_dir, sprintf("%02d_UMAP_highres_annotated_%s.png", plot_number, highres.clusters)), width = 6, height = 4, plot)
+
+
+# Save annotated clustered object -----------------------------------------
+saveRDS(annotated_integrated, file = paste0(data.output,"/annotated_integrated_filtered_",control,"_",mutant,"_",sample,".Rds"))
+
+
+
