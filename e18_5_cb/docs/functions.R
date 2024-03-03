@@ -652,3 +652,16 @@ extractTopPosMarkers <- function(all_top_pos_markers) {
   return(top_pos_markers)
 }
 
+
+# Multi feature plot function --------------------------------------------
+
+multi_feature_plot <- function(seurat_object, features, reduction = "umap", na_cutoff = 0, colors_use) {
+  FeaturePlot_scCustom(
+    seurat_object = seurat_object,
+    reduction = reduction,
+    na_cutoff = na_cutoff,
+    features = features,
+    colors_use = colors_use
+  )
+}
+
