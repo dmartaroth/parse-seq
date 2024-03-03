@@ -667,7 +667,7 @@ multi_feature_plot <- function(seurat_object, features, reduction = "umap", na_c
 }
 
 # Convenience function to create and save multi_feature_plot
-convenient_multi_feature_plot <- function(seurat_object = obj, features, colors_use, name, number = plot_number, width = 6, height = 9, dir = comparison_dir) {
+convenient_multi_feature_plot <- function(seurat_object = obj, features, colors_use, name, number = plot_number, width = 7, height = 11, dir = comparison_dir) {
   
   # Create the multi-feature plot
   plot <- multi_feature_plot(seurat_object = seurat_object, features = features, colors_use = colors_use)
