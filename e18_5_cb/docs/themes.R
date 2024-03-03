@@ -24,14 +24,18 @@ violet.gradient = c(
   "orchid4",
   "darkorchid4")
 
+purple.gradient = c("#FAF0E6", "#CD96CD", "#912CEE", "#551A8B")
+
 muted.blue.gradient = c("#F0F8FF",
-                        "#C6E2FF",
                         "#A4D3EE",
-                        "#6CA6CD",
                         "#4682B4",
                         "#104E8B")
 
-green.gradient = c("#FFFFF0", "#CAFF70", "#BCEE68", "#9ACD32", "#8FBC8F")
+green.gradient <- c("#FFFFF0", "#9ACD32", "#5F9EA0", "#0A7F80")
+
+turquoise.gradient <- c("#E0EEEE", "#40E0D0", "#00C5CD", "#00868B")
+  
+red.gradient <- c("#FFEFDB", "#FFA07A", "#EE6363", "#EE2C2C", "#8B1A1A")
 
 # Define a custom color palette with pastel contrasting colors
 pastel_palette <- c("#7EBDC2", "#D99B82", "#C7CC8F", "#B7A4DB", "#FFB5B5", "#8FC1A9", "#FFD966", "#B2A39E", "#C9ADA7", "#A5B9C4",

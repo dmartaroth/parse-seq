@@ -659,9 +659,30 @@ multi_feature_plot <- function(seurat_object, features, reduction = "umap", na_c
   FeaturePlot_scCustom(
     seurat_object = seurat_object,
     reduction = reduction,
+    split.by = "genotype",
     na_cutoff = na_cutoff,
     features = features,
     colors_use = colors_use
   )
 }
+
+# Convenience function to create and save multi_feature_plot
+convenient_multi_feature_plot <- function(seurat_object = obj, features, colors_use, name, number = plot_number, width = 6, height = 9, dir = comparison_dir) {
+  
+  # Create the multi-feature plot
+  plot <- multi_feature_plot(seurat_object = seurat_object, features = features, colors_use = colors_use)
+  
+  # Increment plot number
+  number <- number + 1
+  
+  # Save the plot
+  ggsave(filename = file.path(dir, sprintf("%02d_%s_by_genotype_featureplots.png", number, name)), 
+         width = width, height = height, plot)
+  
+  # Update plot_number in the global environment
+  assign("plot_number", number, envir = .GlobalEnv)
+  
+  return(plot)
+}
+
 
