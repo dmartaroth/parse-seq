@@ -92,6 +92,7 @@ convenient_multi_feature_plot(features = mat.stage, colors_use = violet.gradient
                               name = "maturation_stage", height = 5.5)
 
 
+
 ## Osteoclasts -------------------------------------------------------------
 
 (plot <- multi_feature_plot(obj, features = osteoclasts, colors_use = turquoise.gradient))
