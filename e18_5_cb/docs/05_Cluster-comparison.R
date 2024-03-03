@@ -22,7 +22,7 @@ plot_number <- 0  # Starting plot number
 # Load annotated integrated object ----------------------------------------
 
 obj <- readRDS(file = paste0(data.output,"/annotated_integrated_filtered_",control,"_",mutant,"_",sample,".Rds"))
-
+obj$cell_types <- Idents(obj)
 
 (plot <- DimPlot(obj, reduction = "umap", label = FALSE)+
     umap_theme() + scale_color_manual(values = iss.colors))

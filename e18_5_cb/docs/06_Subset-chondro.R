@@ -15,6 +15,7 @@ if (!dir.exists(subset_chondro_dir)) {
   dir.create(subset_chondro_dir)
 }
 
+obj <- readRDS(file = paste0(data.output,"/annotated_integrated_filtered_",control,"_",mutant,"_",sample,".Rds"))
 
 # For visualization of chondrogenic genes, would be useful to look in scope of
 # chondrocyte clusters only
