@@ -1,5 +1,5 @@
 # ## ######################################## ## #
-#               COMPARATIVE ANALYSIS             #
+#          COMPARATIVE ANALYSIS (DEG)            #
 # ## ######################################## ## #
 
 library(here)
