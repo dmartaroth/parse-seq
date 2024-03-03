@@ -8,8 +8,8 @@ source(here("e18_5_cb","docs","directories.R")) # load file paths/directories
 source(here("e18_5_cb","docs","functions.R")) # load functions
 source(here("e18_5_cb","docs","themes.R")) # load themes
 
-# Create subdirectory "05_Analysis"
-analysis_dir <- file.path(figs, "05_Analysis")
+# Create subdirectory "05_DEG_Analysis"
+analysis_dir <- file.path(figs, "05_DEG_Analysis")
 if (!dir.exists(analysis_dir)) {
   dir.create(analysis_dir)
 }
