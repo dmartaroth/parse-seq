@@ -605,6 +605,169 @@ p
 
 # Nebulosa plots ----------------------------------------------------------
 
-p <- Nebulosa::plot_density(obj,features = "Col2a1")
+p <- SCpubr::do_NebulosaPlot(sample = obj, 
+                             features = "Col10a1")
+p
+
+
+convenient_save_plot(p, name = "Col10a1_density_SCpubr", dir = SCpubr.dir,height = 7, width = 7)
+
+
+# Use alongside featureplot to see expression and density of surrounding cells
+p1 <- SCpubr::do_FeaturePlot(sample = obj, 
+                             features = "Col10a1")  + 
+  facet_grid(.~obj$genotype)
+
+p2 <- SCpubr::do_NebulosaPlot(sample = obj, 
+                              features = "Col10a1") + 
+  facet_grid(.~obj$genotype)
+p <- p1 | p2
+p
+
+convenient_save_plot(p, name = "Col2a1_featureplot_density_bygenotype_SCpubr", dir = SCpubr.dir,height = 6, width = 15)
+
+
+# Multiple features at the same time
+p <- SCpubr::do_NebulosaPlot(obj, 
+                             features = c("Col2a1", "Col10a1"))
+p
+
+
+
+
+## Compute joint densities -------------------------------------------------
+
+p <- SCpubr::do_NebulosaPlot(sample = obj, 
+                             features = c("Col10a1","Sp7"), 
+                             joint = TRUE)+ 
+  facet_grid(.~obj$genotype)
+p 
+
+convenient_save_plot(p, name = "Col10a1_Sp7_joint_density_bygenotype_SCpubr", dir = SCpubr.dir,height = 6, width = 16)
+
+
+features.use <- c("Col10a1", "Sp7")
+
+p <- SCpubr::do_NebulosaPlot(sample = obj, 
+                             features = features.use, 
+                             joint = TRUE, 
+                             return_only_joint = TRUE,
+                             plot.title = "Joint density Col10a1+ Sp7+")+ 
+  facet_grid(.~obj$genotype)
 
 p
+
+
+
+
+convenient_save_plot(p, name = "Col10a1_Sp7_joint_density_bygenotype_SCpubr", dir = SCpubr.dir,height = 6, width = 10)
+
+
+# Bee Swarm plots ---------------------------------------------------------
+
+# Rank cells in a given variable, which must be continuous
+# Cells are grouped into another variable of interest and displayed in a scatter plot
+
+# Compute enrichment.
+gene_list <- c("Col10a1", "Col2a1")
+obj <- Seurat::AddModuleScore(obj, features = list(gene_list), name = "testing_list")
+
+# Rank the enrichment scores.
+obj$rank <- rank(obj$testing_list1)
+
+# Visualize the two distribution.
+p1 <- SCpubr::do_ViolinPlot(sample = obj,
+                            feature = "testing_list1",
+                            group.by = "genotype")
+
+p2 <- obj@meta.data %>% # Extract metadata
+  dplyr::mutate(cell_name = rownames(obj@meta.data)) %>% # Get the cell names.
+  dplyr::select(cell_name, rank) %>% # Select the columns to plot.
+  dplyr::arrange(rank) %>% # Reorder the rows.
+  dplyr::mutate(cell_name = factor(cell_name, levels = cell_name)) %>% # Convert to factor for plotting.
+  ggplot2::ggplot(mapping = ggplot2::aes(x = cell_name, y = rank)) +
+  ggplot2::geom_point() +
+  ggplot2::theme(axis.text = ggplot2::element_blank(),
+                 axis.ticks = ggplot2::element_blank()) + 
+  ggplot2::xlab("Cell name") + 
+  ggplot2::ylab("Rank")
+
+p <- p1 | p2
+p
+
+# further subset distribution by another variable
+p <- obj@meta.data %>% # Extract metadata
+  dplyr::mutate(cell_name = rownames(obj@meta.data)) %>% # Get the cell names.
+  dplyr::select(cell_name, rank, grouped_clusters) %>% # Select the columns to plot.
+  dplyr::arrange(rank) %>% # Reorder the rows.
+  dplyr::mutate(cell_name = factor(cell_name, levels = cell_name)) %>% # Convert to factor for plotting.
+  ggplot2::ggplot(mapping = ggplot2::aes(x = .data$cell_name, y = .data$rank)) +
+  ggplot2::geom_point() +
+  ggplot2::theme(axis.text = ggplot2::element_blank(),
+                 axis.ticks = ggplot2::element_blank()) + 
+  ggplot2::xlab("Cell name") + 
+  ggplot2::ylab("Rank") + 
+  ggplot2::facet_wrap("grouped_clusters", ncol = 4)
+p
+
+# Now we see not all clusters have the same distribution or ranks
+# Bee Swarm Plot aims to plot these distributions in a nice way
+
+
+## Using categorical variables ---------------------------------------------
+
+p1 <- SCpubr::do_DimPlot(obj, 
+                         reduction = "pca", group.by = "grouped_clusters",
+                         label = TRUE, 
+                         legend.position = "none", 
+                         dims = c(1, 2)) 
+p2 <- SCpubr::do_DimPlot(obj, 
+                         reduction = "pca",group.by = "grouped_clusters", 
+                         label = TRUE, 
+                         legend.position = "none",
+                         dims = c(3, 4)) 
+
+p <- p1 | p2
+p
+
+# Already see that some clusters separate on PC_1 from the rest
+
+p1 <- SCpubr::do_DimPlot(sample = obj, 
+                         reduction = "pca", 
+                         group.by = "cell_types",
+                         label = TRUE, 
+                         repel = TRUE,
+                         label.fill = NULL,
+                         legend.position = "none",
+                         dims = c(1, 2), colors.use = colors)
+
+p2 <- SCpubr::do_DimPlot(sample = obj, 
+                         reduction = "pca", 
+                         group.by = "cell_types",
+                         label = TRUE, 
+                         repel = TRUE,
+                         label.fill = NULL,
+                         legend.position = "none",
+                         dims = c(3, 4), colors.use = colors) 
+
+p3 <- SCpubr::do_BeeSwarmPlot(sample = obj, 
+                              feature_to_rank = "PC_1", 
+                              group.by = "cell_types", 
+                              continuous_feature = FALSE,
+                              legend.position = "none", colors.use = colors)
+
+p4 <- SCpubr::do_BeeSwarmPlot(sample = obj, 
+                              feature_to_rank = "PC_2",
+                              group.by = "cell_types", 
+                              continuous_feature = FALSE,
+                              legend.position = "none",colors.use = colors)
+
+p <- (p1 | p3) / (p2 | p4)
+p
+
+
+
+
+## Using continuous variables ----------------------------------------------
+
+
