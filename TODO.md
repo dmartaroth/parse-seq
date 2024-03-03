@@ -15,3 +15,5 @@
 ▷ Create saveplots function to replace save plot chunks in scripts 02 and 03
 
 ▷ Write script for cell cluster annotation
+
+▷ Use relevant tools from 07_SCpubr.R to improve QC plots
