@@ -366,6 +366,7 @@ Idents(clustered_renamed_updated) <- clustered_renamed_updated$RNA_snn_res.0.4
 annotated_integrated <- Rename_Clusters(seurat_object = clustered_renamed_updated, new_idents = annotation_info$new_cluster_idents)
 
 Idents(annotated_integrated) <- factor(x = Idents(annotated_integrated), levels = sort(levels(annotated_integrated)))
+annotated_integrated$cell_types <- Idents(annotated_integrated)
 
 my_colors =  c("#E6B0C2","#FADBD8","#FFB5B5","thistle1",
                "#424949",

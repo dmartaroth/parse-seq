@@ -84,31 +84,45 @@ lapply(cran_packages, library, character.only = TRUE)
 # 
 # remotes::install_github(github_packages)
 # 
-
+# Change colors -----------------------------------------------------------
+colors <-  c("chondro.1" ="#E6B0C2","chondro.2" = "#FADBD8",
+             "chondro.3" ="#FFB5B5","chondro.4" = "thistle1",
+             "div" = "#424949",
+             "epith.1"= "#ABEBC6", "epith.2"=  "#1C7F82",
+             "imm.1"="#7A8D0A","imm.2"= "#C7CC8F","imm.3"= "darkolivegreen3",
+             "mes.1"="powderblue","mes.2"= "#7EBDC2","mes.3"= "#2E86C1", 
+             "neu.1"="pink3","neu.2"= "#F1C41F","neu.3"= "#B7A4DB",
+             "neu.4"=  "#76448A","neu.5"= "darkseagreen",
+             "unknown"="#F1948A","vasc"= "#CB4335")
+             
+             
+             
 
 # Dim plots ---------------------------------------------------------------
 
 # Seurat's DimPlot.
-p1 <- Seurat::DimPlot(obj)
+p1 <- Seurat::DimPlot(obj, cols = iss.colors)
 
 # SCpubr's DimPlot.
-p2 <- SCpubr::do_DimPlot(sample = obj)
+p2 <- SCpubr::do_DimPlot(sample = obj, colors.use = colors)
 
 p <- p1 | p2
-p
+p 
 
-convenient_save_plot(p, name = "seurat_vs_scpubr_dimplot", dir = SCpubr.dir,height = 8, width = 11)
+convenient_save_plot(p, name = "seurat_vs_scpubr_dimplot", dir = SCpubr.dir,height = 8, width = 12)
 
 
 ## Modifying axes behavior -------------------------------------------------
 
 # Example using PCA reduction.
 p1 <- SCpubr::do_DimPlot(sample = obj, 
-                         reduction = "pca")
+                         reduction = "pca",
+                         colors.use = colors)
 
 # Example using a non-canonical set of dimensions.
 p2 <- SCpubr::do_DimPlot(sample = obj, 
-                         dims = c(2, 1))
+                         dims = c(2, 1),
+                         colors.use = colors)
 
 p <- p1 | p2
 p
@@ -123,301 +137,121 @@ p <- SCpubr::do_DimPlot(sample = obj,
 p
 
 
-## Change colors -----------------------------------------------------------
-colors <-  c("chondro.1" ="#E6B0C2","chondro.2" = "#FADBD8",
-             "chondro.3" ="#FFB5B5","chondro.4" = "pink3","endocr"=  "thistle1",
-                          "epith"= "#ABEBC6", "mes"= "powderblue",
-                          "musc"= "red2", "myeloid"="#B7A4DB","neu.1"=  "#76448A",
-                          "neu.2"=  "#F1948A","neu.3"= "thistle3",
-                          "neu.4"= "#2E86C1", "neu.5"="#424949","olf"= "#9A7D0A",
-                          "osteo.1"= "#1C7F82","osteo.2"= "steelblue", 
-                          "osteocl"=  "#7EBDC2", "unknown.1"= "#F4D03F",
-                          "unknown.2"=  "#C7CC8F","unknown.3"= "#1B4F72",
-                          "vasc"= "#CB4335")
 
 
 ## Modify legend appearance ------------------------------------------------
 # Modify the number of columns in the legend.
 p1 <- SCpubr::do_DimPlot(sample = obj, 
-                         legend.ncol = 2)
+                         legend.ncol = 2,
+                         colors.use = colors)
 
 # Modify the number of rows in the legend.
 p2 <- SCpubr::do_DimPlot(sample = obj, 
-                         legend.nrow = 3)
+                         legend.nrow = 3,
+                         colors.use = colors)
 
 p <- p1 | p2 
 p
 
 # Fill the legend by column.
 p1 <- SCpubr::do_DimPlot(sample = obj,
-                         legend.byrow = FALSE)
+                         legend.byrow = FALSE,
+                         colors.use = colors)
 
 # Fill the legend by rows.
 p2 <- SCpubr::do_DimPlot(sample = obj,
-                         legend.byrow = TRUE)
+                         legend.byrow = TRUE,
+                         colors.use = colors)
 
 p <- p1 | p2 
 p
 
 # Put labels on top of the clusters.
 p <- SCpubr::do_DimPlot(sample = obj, 
-                        label = TRUE)
-p
-
-
-# Labels as text
-p <- SCpubr::do_DimPlot(sample = obj, 
                         label = TRUE,
-                        label.box = FALSE)
-p
-
-
-
-# Change the color of the label text.
-p1 <- SCpubr::do_DimPlot(sample = obj, 
-                         label = TRUE, 
-                         label.color = "black")
-
-# Change the color of the text.
-p2 <- SCpubr::do_DimPlot(sample = obj, 
-                         label = TRUE, 
-                         label.color = "black",
-                         label.box = FALSE)
-p <- p1 | p2
-p
-
-
-# Change the size of the label text.
-p1 <- SCpubr::do_DimPlot(sample = obj, 
-                         label = TRUE, 
-                         label.color = "black",
-                         label.size = 4)
-
-# Change the size of the text.
-p2 <- SCpubr::do_DimPlot(sample = obj, 
-                         label = TRUE, 
-                         label.color = "black",
-                         label.box = FALSE,
-                         label.size = 4)
-p <- p1 | p2
-p
-
-
-
-# Repel the labels.
-p1 <- SCpubr::do_DimPlot(sample = obj, 
-                         label = TRUE, 
-                         label.color = "black",
-                         repel = TRUE)
-
-# Repel the text.
-p2 <- SCpubr::do_DimPlot(sample = obj, 
-                         label = TRUE, 
-                         label.color = "black",
-                         label.box = FALSE,
-                         repel = TRUE)
-p <- p1 | p2
-p
-
-
-
-
-
-## Legend behavior ---------------------------------------------------------
-# Remove the legend from the plot.
-p <- SCpubr::do_DimPlot(sample = obj, 
-                        label = TRUE, 
-                        legend.position = "none")
-p
-
-# Top
-p1 <- SCpubr::do_DimPlot(sample = obj, 
-                         legend.position = "top")
-
-p2 <- SCpubr::do_DimPlot(sample = obj, 
-                         legend.position = "bottom")
-
-p3 <- SCpubr::do_DimPlot(sample = obj, 
-                         legend.position = "left")
-
-p4 <- SCpubr::do_DimPlot(sample = obj, 
-                         legend.position = "right")
-
-p <- (p1 | p2) / (p3 | p4)
-p
-
-
-
-# Add a legend title.
-p <- SCpubr::do_DimPlot(sample = obj, 
-                        legend.title = "Annotated clusters")
-p
-
-
-
-# Top
-p1 <- SCpubr::do_DimPlot(sample = obj, 
-                         legend.title = "My clusters",
-                         legend.title.position = "top")
-
-# Bottom
-p2 <- SCpubr::do_DimPlot(sample = obj, 
-                         legend.title = "My clusters",
-                         legend.title.position = "bottom")
-
-# Left
-p3 <- SCpubr::do_DimPlot(sample = obj, 
-                         legend.title = "My clusters",
-                         legend.title.position = "left")
-
-# Right
-p4 <- SCpubr::do_DimPlot(sample = obj, 
-                         legend.title = "My clusters",
-                         legend.title.position = "right")
-
-p <- (p1 | p2) / (p3 | p4)
-p
-
-# Incorporating these:
-p <- SCpubr::do_DimPlot(sample = obj, 
-                        label = TRUE,
+                        label.box = TRUE,
                         colors.use = colors,
-                        label.color = "white",
                         label.fill = NULL,
-                        repel = TRUE,
-                        legend.title = "Annotated clusters")
+                        label.color = "floralwhite",
+                        repel = TRUE, 
+                        legend.title = "annotated clusters")
 p
 
 
-convenient_save_plot(p, name = "DimPlot_SCpubr", dir = SCpubr.dir,height = 12, width = 10)
 
+convenient_save_plot(p, name = "DimPlot_SCpubr_highres", dir = SCpubr.dir,height = 8, width = 8)
 
-
-## Change the order of plotting --------------------------------------------
-# Regular SCpubr DimPlot.
-p1 <- SCpubr::do_DimPlot(sample = obj,
-                         reduction = "pca",
-                         plot.title = "Normal DimPlot",
-                         legend.position = "none")
-
-# Using order with one value and shuffle = TRUE.
-p2 <- SCpubr::do_DimPlot(sample = obj,
-                         shuffle = TRUE,
-                         order = "5",
-                         reduction = "pca",
-                         plot.title = "shuffle = TRUE",
-                         legend.position = "none")
-
-# Using order with one value and shuffle = FALSE.
-p3 <- SCpubr::do_DimPlot(sample = obj,
-                         shuffle = FALSE,
-                         order = "5",
-                         reduction = "pca",
-                         plot.title = "shuffle = FALSE",
-                         legend.position = "none")
-
-# Using order with all values.
-p4 <- SCpubr::do_DimPlot(sample = obj,
-                         shuffle = FALSE,
-                         order = c("5", "8", "4",
-                                   "9", "3", "1",
-                                   "6", "0", "7", "2"),
-                         reduction = "pca",
-                         plot.title = "shuffle = FALSE all identities",
-                         legend.position = "none")
-
-p <- (p1 | p2) / (p3 | p4)
+p <- SCpubr::do_DimPlot(sample = obj, 
+                        label = FALSE,
+                        colors.use = colors,
+                        repel = TRUE, 
+                        legend.title = "annotated clusters")
 p
+
+
+
+convenient_save_plot(p, name = "DimPlot_SCpubr_highres_nolabels", dir = SCpubr.dir,height = 8, width = 8)
+
+
+
 
 
 ## Highlighting cells ------------------------------------------------------
-cells.use <- WhichCells(obj, idents = "chondro.3")
+chondro.cells <- WhichCells(obj, idents = c("chondro.1","chondro.2","chondro.3","chondro.4"))
+osteo.cells <- WhichCells(obj, idents = c("mes.1","mes.2","mes.3"))
 
 # Compare Seurat and SCpubr way of highlighting cells.
-p1 <- Seurat::DimPlot(obj, 
-                      cells.highlight = cells.use)
+p1 <- SCpubr::do_DimPlot(sample = obj,
+                         cells.highlight = chondro.cells,
+                         colors.use = "pink2",
+                         na.value = "floralwhite",
+                         sizes.highlight = 1.5,
+                         legend.title = "chondro clusters")
 
 p2 <- SCpubr::do_DimPlot(sample = obj,
-                         cells.highlight = cells.use)
+                         cells.highlight = osteo.cells,
+                         colors.use = "darkslategray4",
+                         na.value = "floralwhite",
+                         sizes.highlight = 1.5,
+                         legend.title = "mes clusters")
 
 p <- p1 | p2
 p
 
 
 
-# Change color of highlighted and non-highlighted cells.
-p <- SCpubr::do_DimPlot(sample = obj, 
-                        cells.highlight = cells.use,
-                        colors.use = "black",
-                        na.value = "grey90")
-p
+convenient_save_plot(p, name = "DimPlot_SCpubr_chondro_osteo", dir = SCpubr.dir,height = 8, width = 12)
 
 
-
-# Increase the size of the highlighted cells.
-p <- SCpubr::do_DimPlot(sample = obj, 
-                        cells.highlight = cells.use, 
-                        sizes.highlight = 1)
-p
-
-
-
-# Using cells.highlight.
-p1 <- SCpubr::do_DimPlot(sample = obj, 
-                         cells.highlight = cells.use)
-
-# Using idents.highlight.
-p2 <- SCpubr::do_DimPlot(sample = obj, 
-                         idents.highlight = c("chondro.1"))
-
-# Using both.
-p3 <- SCpubr::do_DimPlot(sample = obj, 
-                         cells.highlight = cells.use, 
-                         idents.highlight = c("chondro.1"))
-
-p <- p1 | p2 | p3
-p
 
 
 
 ## Restrict the identities displayed ---------------------------------------
 # Subset desired identities in a DimPlot.
-p <- SCpubr::do_DimPlot(sample = obj[, obj$cell_types %in% c("chondro.1","chondro.2", "chondro.3")],colors.use = colors)
+p <- SCpubr::do_DimPlot(sample = obj[, obj$cell_types %in% 
+                                       c("chondro.1","chondro.2", "chondro.3",
+                                         "chondro.4","mes.1","mes.2","mes.3")],
+                        colors.use = colors,
+                        legend.title = "annotated clusters (subset)",
+                        legend.nrow = 1)
 
 p
 
 
-convenient_save_plot(p, name = "Selective_DimPlot_chondro.1_2_3_SCpubr", dir = SCpubr.dir,height = 10, width = 10)
+convenient_save_plot(p, name = "Selective_DimPlot_chondro_mes_SCpubr", dir = SCpubr.dir,height = 8, width = 8)
 
 # The approach above loses UMAP silhouette
 # Select identities with idents.keep.
-p1 <- SCpubr::do_DimPlot(sample = obj,
-                         idents.keep = c("chondro.1","chondro.2", "chondro.3"))
+p <- SCpubr::do_DimPlot(sample = obj,
+                         idents.keep = c("chondro.1","chondro.2", "chondro.3",
+                                         "chondro.4","mes.1","mes.2","mes.3"),
+                         colors.use = colors,
+                         na.value = "floralwhite",
+                        legend.title = "annotated clusters (subset)",
+                        legend.nrow = 1)
 
-# Also, non-selected cells's color can be modified.
-p2 <- SCpubr::do_DimPlot(sample = obj,
-                         idents.keep = c("chondro.1","chondro.2", "chondro.3"),
-                         na.value = "grey50")
-p <- p1 | p2
 p
-
-
-## Group by another metadata variable --------------------------------------
-
-# Group by another metadata variable.
-p1 <- SCpubr::do_DimPlot(obj, 
-                         group.by = "lowres_Idents",
-                         legend.title = "low res clusters")
-
-p2 <- SCpubr::do_DimPlot(obj, 
-                         group.by = "cell_types",
-                         legend.position = "right",colors.use = colors)
-
-p <- p1 | p2
-p
-
-
-convenient_save_plot(p, name = "lowres_highres_clustering_SCpubr", dir = SCpubr.dir,height = 9, width = 12)
+convenient_save_plot(p, name = "Selective_DimPlot_chondro_mes_SCpubr_withnas", dir = SCpubr.dir,height = 8, width = 8)
 
 
 ## Splitting by a category -------------------------------------------------
@@ -428,17 +262,28 @@ p <- Seurat::DimPlot(obj,
 
 p
 
+# CONTINUE TESTING FROM HERE
+# CLUSTER ANNOTATIONS NEED TO BE SAVED PROPERLY IN ANNOTATION SCRIPT
+Idents(obj) <- obj$RNA_snn_res.0.1
+annotation_info <- Pull_Cluster_Annotation(annotation = here::here(data.output,"0.1res_cluster_annotation.csv"))
+
+# Rename clusters
+obj <- Rename_Clusters(seurat_object = obj, new_idents = annotation_info$new_cluster_idents, meta_col_name = "lowres_annotation")
+obj$lowres_clusters <- Idents(obj)
+
+
+
 # SCpubr's DimPlot using split.by
 p <- SCpubr::do_DimPlot(obj, 
-                        split.by = "cell_types", 
-                        ncol = 5, 
+                        split.by = "lowres_clusters", 
+                        ncol = 6, 
                         legend.position = "none",
                         font.size = 12, colors.use = colors)
 
 p
 
 
-convenient_save_plot(p, name = "split_clusters_SCpubr", dir = SCpubr.dir,height = 20, width = 20)
+convenient_save_plot(p, name = "split_clusters_SCpubr", dir = SCpubr.dir,height = 15, width = 20)
 
 
 # Using split.by and restricting the number of output plots with idents.keep.
