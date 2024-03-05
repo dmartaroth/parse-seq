@@ -92,23 +92,27 @@ ggsave(filename = file.path(integration_dir, sprintf("%02d_integrated_UMAP_clust
 
 merged_sample <- RunUMAP(merged_sample, dims = 1:30, reduction = "integrated.cca")
 
-(plot <- DimPlot(merged_sample, reduction = "umap", group.by = c("genotype", "RNA_snn_res.0.05"))+
+# Low resolution clustering best at 0.1 for this sample
+(plot <- DimPlot(merged_sample, reduction = "umap", group.by = c("genotype", "RNA_snn_res.0.1"))+
   umap_theme() + scale_color_manual(values = pastel_palette)) 
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(integration_dir, sprintf("%02d_integrated-cca_umap_res.0.05.png", plot_number)), width = 8, height = 3, plot)
+ggsave(filename = file.path(integration_dir, sprintf("%02d_lowres_integrated-cca_umap_res.0.1.png", plot_number)), width = 8, height = 3, plot)
 
-(plot <- DimPlot(merged_sample, reduction = "umap", group.by = c("RNA_snn_res.0.05","RNA_snn_res.0.6"))+
-  umap_theme() + scale_color_manual(values = pastel_palette)) 
+
+# Higher res clustering good at 0.4
+(plot <- DimPlot(merged_sample, reduction = "umap", group.by = c("RNA_snn_res.0.4"))+
+  umap_theme() + scale_color_manual(values = pastel_palette))
+(plot <- plot + theme(legend.position = "bottom"))
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(integration_dir, sprintf("%02d_integrated-cca_umap_res.0.05_0.6.png", plot_number)), width = 8, height = 3, plot)
+ggsave(filename = file.path(integration_dir, sprintf("%02d_highres_integrated-cca_umap_res.0.4.png", plot_number)), width = 4, height =5, plot)
 
 
 # Visualize conditions side by side
-plot <- DimPlot(merged_sample, reduction = "umap", split.by = "genotype", group.by = "RNA_snn_res.0.05")+
+plot <- DimPlot(merged_sample, reduction = "umap", split.by = "genotype", group.by = "RNA_snn_res.0.4")+
   umap_theme() + scale_color_manual(values = pastel_palette) 
 
 # Save plot
