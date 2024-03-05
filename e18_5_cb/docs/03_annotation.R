@@ -45,9 +45,18 @@ all_markers_pct <- all_markers_pct %>%
 
 write.csv(all_markers_pct, file = here(data.output, "0.1res_all_markers_pct.csv"))
 
-# Extract the top N marker genes per cluster
+# Extract the top N marker genes per cluster for plotting
 top_5 <- Extract_Top_Markers(marker_dataframe = all_markers_pct, num_genes = 5, rank_by = "avg_log2FC")
-write.csv(top_5, file = here(data.output, "0.1res_top5_markers_pct.csv"))
+
+
+top50_markers_pct <- all_markers_pct %>%
+  group_by(cluster) %>%
+  arrange(desc(avg_log2FC)) %>% 
+  top_n(n=50, wt = avg_log2FC)%>%
+  arrange(cluster)
+
+write.csv(top50_markers_pct, file = here(data.output, "0.1res_top50_markers_pct.csv"))
+
 
 (plot <- DotPlot(
   object = clustered_renamed,
@@ -280,18 +289,22 @@ ggsave(filename = file.path(clustering_dir, sprintf("%02d_smoothmuscle_featurepl
 annotation_info <- Pull_Cluster_Annotation(annotation = here(data.output,"0.1res_cluster_annotation.csv"))
 
 # Rename clusters
-clustered_renamed_updated <- Rename_Clusters(seurat_object = clustered_renamed, new_idents = annotation_info$new_cluster_idents, meta_col_name = "lowres_Idents")
+clustered_renamed_updated <- Rename_Clusters(seurat_object = clustered_renamed, new_idents = annotation_info$new_cluster_idents, meta_col_name = "lowres_annotation")
 
-(plot <- DimPlot(clustered_renamed, reduction = "umap")+
-    umap_theme() + scale_color_manual(values = pastel_palette)) 
+(plot <- DimPlot(clustered_renamed_updated, reduction = "umap",label = TRUE,repel = TRUE,label.size = 3,label.box = TRUE,cols = my_colors)+
+    umap_theme()) 
+
+
 
 # Save plot
 plot_number <- plot_number + 1
 ggsave(filename = file.path(clustering_dir, sprintf("%02d_UMAP_lowres_annotated_%s.png", plot_number, lowres.clusters)), width = 3, height = 3, plot)
 
 
+
 ## High res cluster annotation ---------------------------------------------
 highres.clusters <- "RNA_snn_res.0.4"
+
 (plot <- DimPlot(clustered_renamed, reduction = "umap", label = TRUE,group.by = highres.clusters)+
     umap_theme() + scale_color_manual(values = pastel_palette)) 
 
@@ -354,15 +367,23 @@ annotated_integrated <- Rename_Clusters(seurat_object = clustered_renamed_update
 
 Idents(annotated_integrated) <- factor(x = Idents(annotated_integrated), levels = sort(levels(annotated_integrated)))
 
-my_colors =  c("#E6B0C2","#FADBD8","#FFB5B5","pink3", "thistle1",
-               "#ABEBC6",  "powderblue","red2", 
-               "#B7A4DB",  "#76448A", "#F1948A", "thistle3","#2E86C1", 
-               "#424949","#9A7D0A","#1C7F82", "steelblue","#7EBDC2",
-               "#F4D03F","#C7CC8F", "#1B4F72","#CB4335",
-               "darkgreen", "#873600", "#4A235A", "#F1C41F",
+my_colors =  c("#E6B0C2","#FADBD8","#FFB5B5","thistle1",
+               "#424949",
+               "#ABEBC6",  "powderblue",
+                "#76448A",
+                "#9A7D0A","#C7CC8F", 
+               "pink3", "#F1C41F", "#B7A4DB", 
+               "#2E86C1", "#1C7F82",
+                "#F1948A", "thistle3",  "darkgreen", "#873600", "red2", 
+               
+               "#4A235A", 
+               
+               "steelblue","#7EBDC2",
+               "#F4D03F","#1B4F72","#CB4335",
+             
              "red2")
-(plot <- DimPlot(annotated_integrated, reduction = "umap", label = FALSE)+
-    umap_theme() + scale_color_manual(values = my_colors))
+(plot <- DimPlot(annotated_integrated, reduction = "umap", label = TRUE,repel = TRUE,label.size = 3,label.box = TRUE,cols = my_colors)+
+    umap_theme() )
 
 # Save plot
 plot_number <- plot_number + 1
