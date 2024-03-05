@@ -567,8 +567,8 @@ findTopMarkers <- function(obj, cluster_names) {
                             ident.1 = paste(cluster, "Bmp2_ctrl", sep = "_"), 
                             ident.2 = paste(cluster, "Bmp2_ncko", sep = "_"), 
                             verbose = FALSE)
-    top3 <- response %>%
-      slice_max(n = 3, order_by = avg_log2FC)
+    top4 <- response %>%
+      slice_max(n = 4, order_by = avg_log2FC)
     return(top3)
   })
   names(top_markers) <- cluster_names
@@ -634,9 +634,9 @@ findTopPosMarkers <- function(obj, cluster_names) {
                             ident.2 = paste(cluster, "Bmp2_ncko", sep = "_"),
                             min.pct = 0.25,
                             logfc.threshold = 0.25)
-    top3 <- response %>%
-      slice_max(n = 3, order_by = avg_log2FC)
-    return(top3)
+    top4 <- response %>%
+      slice_max(n = 4, order_by = avg_log2FC)
+    return(top4)
   })
   names(top_pos_markers) <- cluster_names
   return(top_pos_markers)

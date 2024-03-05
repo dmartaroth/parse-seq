@@ -1,0 +1,21 @@
+cluster,cell_type,sub_type,notes
+0,chondro.1,,
+1,mes.3,mineralizing,"mineralization, bone"
+2,mes.2,,early mes?
+3,div,,mitotic cells
+4,epith.1,,
+5,neu.1,olfactory,
+6,chondro.2,,"mineralization, cartilage"
+7,imm.3,,"cytokines, inflammation, iron-related"
+8,vasc,,endothelial cells
+9,neu.5,,myelination
+10,chondro.4,mitotic,mitotic cells
+11,neu.2,,brain
+12,chondro.3,,hypertrophic chondrocytes
+13,imm.1,,
+14,neu.3,,pituitary
+15,imm.2,,"mitotic cells, osteoclasts?"
+16,neu.4,,CNS
+17,mes.1,,neu? Smooth muiscle contraction?
+18,unknown,,
+19,epith.2,,ciliated epithelium
