@@ -1,0 +1,76 @@
+---
+title: "scRNAseq discussion"
+author: "Daniela M. Roth"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+library(here)
+source(here("e18_5_cb","docs","packages.R")) # load packages
+source(here("e18_5_cb","docs","directories.R")) # load file paths/directories
+source(here("e18_5_cb","docs","functions.R")) # load functions
+source(here("e18_5_cb","docs","themes.R")) # load themes
+
+# Create subdirectory "09_Exploration"
+exploration_dir <- file.path(figs, "09_Exploration")
+if (!dir.exists(exploration_dir)) {
+  dir.create(exploration_dir)
+}
+
+plot_number <- 0  # Starting plot number
+```
+
+Previous data is mainly *in vitro*, groups often look at cartilage in context of osteoarthritis. From the Bmp2 perspective we offer *in vivo* validation, and from *bmp7* perspective novelty of endochondral context and independence from *Bmp2*
+
+If we have Bmp7 there in osteocytes, the cells presumably don't sense forces so don't give signal for remodeling. Migh tnot e ven communicate to maintain trabeulae. We don't know what the signal sare for trabeular formation vs cortical bone. Maybe Bmp7 is involved in this decision. In order to maintain traveulae you need mfec anical signals to develop and maintain . it's an inducible eknockout. not ever cell will be Bmp7 deficient. counterreaction always happens when you forces something to happen. I bet if you left these mice for another few months their nasal bones would fuse completely. Daniel could follow up with this experiment.
+
+Supplementary figure of nsins in AT mice for Bmp ins story
+
+Bmp2 required to move out of hypertrophy to next stage. Autocrine/paracrine signaling? signals to itself how to go there, if you don't have it they just get stuck.
+
+Maybe balance of Bmp7 to 2 is interpreted rather than amount of each. Bmps do not simply make bone, they really function in a precise spatiotemporal niche to ensure proper shape and development. Flooding teh system with these molecules won't get appropriate response. Involved in too many processes - hypertrophy, bone formation. Which process is affected by this system? YOu can't know right now. This explained unsuccessful outcomes. Without the knockout basis ytou can't make sense of it.
+
+Work in progress but single cell confirms what we've seen. I see a reduction , I see a skewing of rux2 population . MMP13 important for remodeling col2 to make space for colx. all this confirms that the experiment worked and
+
+How is Bmp2 expressed in the mutant
+
+Is there a way to localize GFP in RNAseq datasets?
+
+```{r}
+
+library(SCpubr)
+obj <- readRDS(file = paste0(data.output,"/annotated_integrated_filtered_",control,"_",mutant,"_",sample,".Rds"))
+obj$cell_types <- Idents(obj)
+
+FeaturePlot(obj, features = "nFeature_RNA")
+```
+
+Reprocess data with lower boundary threshold for nFeatures and nCounts, not just upper. EASY FIX
+
+Sostdc1 cluster difference. Daniel says Bmp2 is
+
+Ptpro: phosphatase in apical surface of polarized cells. But we see it in the neural clusters different.
+
+Hmcn1 increased in chondrocf.1 and 2 but not 3,. increased in osteo.2.
+
+Zbtb7c
+
+Tnc decreased in chondro 3 and 4 but not 1 and 2
+
+I think we should start with looking for top gene differences, consider
+
+Cfh complement factor. decerased a lot in ncko.
+
+Wnt signaling is interesting, especially inhibitors. pax9 is really interesting. it's expressed in different clusters both in osteogenic cells and chondrocytes.
+
+Jag1 and Notch1 have differences, though not huge. These form boundaries, lateral inhibition etc. Could all be consequences of cells not being properly polarzied etc. Same region is enriched for Tgfbr1. So is Bmpr1a.
+
+Could Acvr1 be increased?
+
+Csf1 has potential shift in enrichment region of chondrogenic cells.

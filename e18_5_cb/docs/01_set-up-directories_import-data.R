@@ -80,9 +80,10 @@ ncko <- add_percent_mito(ncko)
 
 # Filtering low quality cells ---------------------------------------------
 # Select subset values from prepro.plots output, especially violin plots
+# Input needed here
 
 filtered_ctrl <- subset(x = ctrl,
-                        subset = (nFeature_RNA < 5500) &
+                        subset = (nFeature_RNA < 5500) # Add lower threshold
                           (nCount_RNA < 50000) &
                           (percent.mito < 0.15))
 

@@ -8,6 +8,43 @@ note1 <- red $ bold
 note2 <- black $ bold
 note3 <- blue $ bold
 
+iss.colors =  c("#E6B0C2","#FADBD8","#FFB5B5","pink3", "thistle1",
+                "#ABEBC6",  "powderblue","red2", 
+                "#B7A4DB",  "#76448A", "#F1948A", "thistle3","#2E86C1", 
+                "#424949","#9A7D0A","#1C7F82", "steelblue","#7EBDC2",
+                "#F4D03F","#C7CC8F", "#1B4F72","#CB4335",
+                "darkgreen", "#873600", "#4A235A", "#F1C41F",
+                "red2")
+
+violet.gradient = c(
+  "floralwhite",
+  "lavenderblush",
+  "plum1",
+  "orchid",
+  "orchid4",
+  "darkorchid4")
+
+purple.gradient = c("#FAF0E6", "#CD96CD", "#912CEE", "#551A8B")
+
+muted.blue.gradient = c("#F0F8FF",
+                        "#A4D3EE",
+                        "#4682B4",
+                        "#104E8B")
+
+green.gradient <- c("#FFFFF0", "#9ACD32", "#5F9EA0", "#0A7F80")
+
+turquoise.gradient <- c("#E0EEEE", "#40E0D0", "#00C5CD", "#00868B")
+  
+red.gradient <- c("#FFEFDB", "#FFA07A", "#EE6363", "#EE2C2C", "#8B1A1A")
+
+# Define a custom color palette with pastel contrasting colors
+pastel_palette <- c("#7EBDC2", "#D99B82", "#C7CC8F", "#B7A4DB", "#FFB5B5", "#8FC1A9", "#FFD966", "#B2A39E", "#C9ADA7", "#A5B9C4",
+                    "#E6B0C2", "#7F8C8D", "#FADBD8", "#ABEBC6", "#D5DBDB", "#F5CBA7", "#E59866", "#641E16", "#F8C471", "#D35400",
+                    "#2E4053", "#6C3483", "#2980B9", "#7D3C98", "#F4D03F", "#1F618D", "#6E2C00", "#B3B6B7", "#154360", "#FAD7A0",
+                    "#9A7D0A", "#873600", "#DC7633", "#4A235A", "#424949", "#8E44AD", "#1B4F72", "#CB4335", "#76448A", "#2E86C1",
+                    "#F1C40F", "#F1948A", "thistle3")
+
+
 # Custom theme for barplot
 custom_theme_bar <- function() {
   theme_minimal() +
@@ -113,12 +150,6 @@ custom_theme_violin <- function() {
 }
 
 
-# Define a custom color palette with pastel contrasting colors
-pastel_palette <- c("#7EBDC2", "#D99B82", "#C7CC8F", "#B7A4DB", "#FFB5B5", "#8FC1A9", "#FFD966", "#B2A39E", "#C9ADA7", "#A5B9C4",
-                    "#E6B0C2", "#7F8C8D", "#FADBD8", "#ABEBC6", "#D5DBDB", "#F5CBA7", "#E59866", "#641E16", "#F8C471", "#D35400",
-                    "#2E4053", "#6C3483", "#2980B9", "#7D3C98", "#F4D03F", "#1F618D", "#6E2C00", "#B3B6B7", "#154360", "#FAD7A0",
-                    "#9A7D0A", "#873600", "#DC7633", "#4A235A", "#424949", "#8E44AD", "#1B4F72", "#CB4335", "#76448A", "#2E86C1",
-                    "#F1C40F", "#F1948A", "thistle3")
 
 # Define the custom theme for UMAP plots
 umap_theme <- function() {
@@ -185,3 +216,5 @@ custom_dotplot_theme <- function() {
     legend.title = element_text(size = 8)  
   )
 }
+
+
