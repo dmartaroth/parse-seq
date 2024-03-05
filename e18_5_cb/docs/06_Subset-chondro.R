@@ -58,3 +58,4 @@ hypertr.stage <- c("Runx2","Col10a1","Mmp13","Vegf")
 convenient_multi_feature_plot(seurat_object = chondro_subset, features = hypertr.stage, 
                               colors_use = violet.gradient, name = "hypertrophy_stage",
                               dir = subset_chondro_dir, height = 10)
+
