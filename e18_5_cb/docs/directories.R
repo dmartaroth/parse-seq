@@ -8,7 +8,7 @@ control <- "Bmp2_ctrl" # replace quoted text with genotype of sample
 mutant <- "Bmp2_ncko"
 
 # Create home.path directory
-home.path <- here(sample)
+home.path <- here::here(sample)
 dir.create(home.path, recursive = TRUE)
 
 # Initialize an empty list to store directory paths
@@ -21,10 +21,10 @@ for (dir in dirs) {
   dir.create(dir_path, recursive = TRUE)
   dir_paths[[dir]] <- dir_path
 }
-dir.create(data.output <- here(home.path, "data-output"),recursive = TRUE)
-dir.create(figs <- here(home.path, "figures"),recursive = TRUE)
+dir.create(data.output <- here::here(home.path, "data-output"),recursive = TRUE)
+dir.create(figs <- here::here(home.path, "figures"),recursive = TRUE)
 
 # Create subdirectories for control and mutant data
-data.path <- here(home.path, "raw-data")
-dir.create(data.path.ctrl <- here(data.path, paste(control, sep = "_", sample)))
-dir.create(data.path.ncko <- here(data.path, paste(mutant, sep = "_", sample)))
+data.path <- here::here(home.path, "raw-data")
+dir.create(data.path.ctrl <- here::here(data.path, paste(control, sep = "_", sample)))
+dir.create(data.path.ncko <- here::here(data.path, paste(mutant, sep = "_", sample)))

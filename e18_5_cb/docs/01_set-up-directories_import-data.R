@@ -4,15 +4,16 @@
 
 # Downloaded Parse Biosciences pipeline output from UBC bioinformatics team for
 # Bmp2 ctrl and ncko cranial base samples.
-# Date: Wed Feb 28 16:46:10 2024 ------------------
+# Date: Tue Mar 05 09:53:11 2024 ------------------
+
 
 # Packages, directories, and functions ------------------------------------
 
 library(here)
-source(here("e18_5_cb","docs","packages.R")) # load packages
-source(here("e18_5_cb","docs","directories.R")) # load file paths/directories
-source(here("e18_5_cb","docs","functions.R")) # load functions
-source(here("e18_5_cb","docs","themes.R")) # load themes
+source(here::here("e18_5_cb","docs","packages.R")) # load packages
+source(here::here("e18_5_cb","docs","directories.R")) # load file paths/directories
+source(here::here("e18_5_cb","docs","functions.R")) # load functions
+source(here::here("e18_5_cb","docs","themes.R")) # load themes
 
 # Import data -------------------------------------------------------------
 
@@ -83,12 +84,14 @@ ncko <- add_percent_mito(ncko)
 # Input needed here
 
 filtered_ctrl <- subset(x = ctrl,
-                        subset = (nFeature_RNA < 5500) # Add lower threshold
+                        subset = (nFeature_RNA > 200) & # value from seurat vignette
+                          (nFeature_RNA < 5500) &
                           (nCount_RNA < 50000) &
                           (percent.mito < 0.15))
 
 filtered_ncko <- subset(x = ncko,
-                        subset = (nFeature_RNA < 5500) &
+                        subset = (nFeature_RNA > 200) &
+                          (nFeature_RNA < 5500) &
                           (nCount_RNA < 70000) &
                           (percent.mito < 0.15))
 

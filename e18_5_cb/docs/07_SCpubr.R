@@ -6,10 +6,10 @@
 
 
 library(here)
-source(here("e18_5_cb","docs","packages.R")) # load packages
-source(here("e18_5_cb","docs","directories.R")) # load file paths/directories
-source(here("e18_5_cb","docs","functions.R")) # load functions
-source(here("e18_5_cb","docs","themes.R")) # load themes
+source(here::here("e18_5_cb","docs","packages.R")) # load packages
+source(here::here("e18_5_cb","docs","directories.R")) # load file paths/directories
+source(here::here("e18_5_cb","docs","functions.R")) # load functions
+source(here::here("e18_5_cb","docs","themes.R")) # load themes
 
 # Create subdirectory "08_SCpubr"
 SCpubr.dir <- file.path(figs, "08_SCpubr")
@@ -26,38 +26,39 @@ plot_number <- 0
 # install.packages("SCpubr")
 # 
 # # Install CRAN packages.
-# cran_packages <- c("assertthat",
-#                    "circlize",
-#                    "colorspace",
-#                    "dplyr",
-#                    "ggbeeswarm",
-#                    "ggdist",
-#                    "ggExtra",
-#                    "ggnewscale",
-#                    "ggplot2",
-#                    "ggplotify",
-#                    "ggrastr",
-#                    "ggrepel",
-#                    "ggridges",
-#                    "ggsignif",
-#                    "graphics",
-#                    "magrittr",
-#                    "patchwork",
-#                    "pheatmap",
-#                    "plyr",
-#                    "rlang",
-#                    "scales",
-#                    "scattermore",
-#                    "Seurat",
-#                    "tibble",
-#                    "tidyr",
-#                    "forcats",
-#                    "Matrix",
-#                    "purrr",
-#                    "stringr",
-#                    "svglite",
-#                    "viridis")
-# 
+cran_packages <- c("assertthat",
+                   "circlize",
+                   "colorspace",
+                   "dplyr",
+                   "ggbeeswarm",
+                   "ggdist",
+                   "ggExtra",
+                   "ggnewscale",
+                   "ggplot2",
+                   "ggplotify",
+                   "ggrastr",
+                   "ggrepel",
+                   "ggridges",
+                   "ggsignif",
+                   "graphics",
+                   "magrittr",
+                   "patchwork",
+                   "pheatmap",
+                   "plyr",
+                   "rlang",
+                   "scales",
+                   "scattermore",
+                   "Seurat",
+                   "tibble",
+                   "tidyr",
+                   "forcats",
+                   "Matrix",
+                   "purrr",
+                   "stringr",
+                   "svglite",
+                   "viridis")
+
+lapply(cran_packages, library, character.only = TRUE)
 # install.packages(cran_packages)
 # 
 # # Install bioconductor packages.
@@ -1086,7 +1087,18 @@ p
 
 convenient_save_plot(p, name = "dotplot_chondrocyte_state_flipped_SCpubr", dir = SCpubr.dir,height = 7, width = 14)
 
-
+# Use to characterize cell states between control and mutant
+SCpubr::do_DotPlot(sample = obj,  
+                   use_viridis = TRUE,
+                   group.by =c("genotype"),
+                   viridis.palette = "E",
+                   viridis.direction = 1, 
+                   scale = FALSE,
+                   dot.scale = 10,
+                   features = genes, 
+                   cluster =  TRUE, 
+                   plot.title = "Chondrocyte differentiation",
+                   legend.position = "right")
 
 # Bar plots ---------------------------------------------------------------
 
