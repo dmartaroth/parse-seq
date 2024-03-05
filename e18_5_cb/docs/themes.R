@@ -16,6 +16,9 @@ iss.colors =  c("#E6B0C2","#FADBD8","#FFB5B5","thistle1",
                 "pink3", "#F1C41F", "#B7A4DB",  "#76448A","darkseagreen",
                 "#F1948A", "#CB4335")
 
+osteochondro.colors = c("#E6B0C2","#FADBD8","#FFB5B5","thistle1",
+                        "powderblue", "#7EBDC2", "#2E86C1")
+
 violet.gradient = c(
   "floralwhite",
   "lavenderblush",
