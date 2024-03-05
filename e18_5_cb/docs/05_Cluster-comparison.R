@@ -3,10 +3,10 @@
 # ## ######################################## ## #
 
 library(here)
-source(here("e18_5_cb","docs","packages.R")) # load packages
-source(here("e18_5_cb","docs","directories.R")) # load file paths/directories
-source(here("e18_5_cb","docs","functions.R")) # load functions
-source(here("e18_5_cb","docs","themes.R")) # load themes
+source(here::here("e18_5_cb","docs","packages.R")) # load packages
+source(here::here("e18_5_cb","docs","directories.R")) # load file paths/directories
+source(here::here("e18_5_cb","docs","functions.R")) # load functions
+source(here::here("e18_5_cb","docs","themes.R")) # load themes
 
 # Create subdirectory "06_Cluster_Comparison"
 comparison_dir <- file.path(figs, "06_Cluster_Comparison")
@@ -23,9 +23,10 @@ plot_number <- 0  # Starting plot number
 
 obj <- readRDS(file = paste0(data.output,"/annotated_integrated_filtered_",control,"_",mutant,"_",sample,".Rds"))
 obj$cell_types <- Idents(obj)
+Idents(obj) <- factor(x = Idents(obj), levels = sort(levels(obj)))
 
-(plot <- DimPlot(obj, reduction = "umap", label = FALSE)+
-    umap_theme() + scale_color_manual(values = iss.colors))
+(plot <- DimPlot(obj, reduction = "umap", label = TRUE, label.size = 3,label.box = TRUE,cols = iss.colors)+
+    umap_theme() )
 
 # Genes to use ------------------------------------------------------------
 
@@ -311,3 +312,4 @@ convenient_multi_feature_plot(features = pretohypertr, colors_use = violet.gradi
 
 remodeling <- c("Tnfsf11","Tnfrsf11b","Alpl","Csf1")
 convenient_multi_feature_plot(features = remodeling, colors_use = turquoise.gradient, name = "remodeling")
+
