@@ -1,0 +1,133 @@
+Top markers for chondro.1 ordered by avg_log2FC:
+              p_val avg_log2FC pct.1 pct.2     p_val_adj
+Xist  1.814132e-159   5.884209 0.713 0.088 2.454883e-155
+Cntn3  1.800348e-28   1.837427 0.389 0.147  2.436230e-24
+Peak1  2.044394e-23   1.603464 0.806 0.844  2.766473e-19
+Rtl3   1.288514e-13   1.571881 0.282 0.137  1.743618e-09
+
+Top markers for chondro.2 ordered by avg_log2FC:
+               p_val avg_log2FC pct.1 pct.2    p_val_adj
+Xist    1.042894e-70   6.170020 0.824 0.066 1.411244e-66
+Gm26992 1.445723e-11   2.818346 0.264 0.054 1.956353e-07
+Brip1   1.228653e-14   2.734747 0.351 0.080 1.662613e-10
+Spp1    2.528915e-06   2.161808 0.601 0.443 3.422127e-02
+
+Top markers for chondro.3 ordered by avg_log2FC:
+                     p_val avg_log2FC pct.1 pct.2    p_val_adj
+4932411K12Rik 1.127856e-09   7.513298 0.382 0.000 1.526215e-05
+Xist          2.518905e-25   6.369293 0.847 0.092 3.408582e-21
+Cemip         4.934139e-02   3.461669 0.298 0.197 1.000000e+00
+Steap4        6.036952e-03   2.758230 0.351 0.197 1.000000e+00
+
+Top markers for chondro.4 ordered by avg_log2FC:
+               p_val avg_log2FC pct.1 pct.2    p_val_adj
+Xist    2.054344e-32   6.690117 0.777 0.076 2.779939e-28
+Vit     4.624044e-09   3.741089 0.312 0.049 6.257256e-05
+Gm26992 1.392922e-07   2.372346 0.357 0.097 1.884902e-03
+Cntn3   1.084929e-07   2.246838 0.348 0.083 1.468125e-03
+
+Top markers for div ordered by avg_log2FC:
+              p_val avg_log2FC pct.1 pct.2    p_val_adj
+Thbs2  2.184994e-16   2.870016 0.253 0.041 2.956734e-12
+Pdzrn4 1.131709e-16   2.259040 0.289 0.055 1.531429e-12
+Fat3   5.108647e-17   2.248664 0.280 0.048 6.913021e-13
+Syne1  3.549562e-20   2.110324 0.484 0.164 4.803267e-16
+
+Top markers for epith.1 ordered by avg_log2FC:
+            p_val avg_log2FC pct.1 pct.2    p_val_adj
+Gh   1.353775e-34  12.656003 0.327 0.000 1.831928e-30
+Chgb 1.353199e-29   5.902509 0.311 0.010 1.831149e-25
+Nrg1 7.714860e-73   4.372554 0.806 0.116 1.043975e-68
+Nnat 5.183186e-49   4.199030 0.526 0.027 7.013887e-45
+
+Top markers for epith.2 ordered by avg_log2FC:
+               p_val avg_log2FC pct.1 pct.2 p_val_adj
+Lmntd1   0.010378806   4.995599 0.643     0         1
+Wdr49    0.018886155   4.892602 0.571     0         1
+Kndc1    0.010378806   4.767966 0.643     0         1
+Slc9a3r1 0.002697495   4.739204 0.786     0         1
+
+Top markers for imm.1 ordered by avg_log2FC:
+             p_val avg_log2FC pct.1 pct.2    p_val_adj
+Ccl7  4.477309e-11   8.100414  0.28 0.000 6.058694e-07
+Xist  5.236034e-11   4.982040  0.40 0.041 7.085401e-07
+Cmpk2 5.172048e-06   3.545766  0.26 0.041 6.998815e-02
+Ifit2 1.959033e-03   2.737421  0.28 0.103 1.000000e+00
+
+Top markers for imm.2 ordered by avg_log2FC:
+                p_val avg_log2FC pct.1 pct.2   p_val_adj
+Xist     4.254068e-07   4.988814 0.500 0.085 0.005756605
+Ibsp     7.094935e-03   4.894211 0.250 0.064 1.000000000
+Hist1h4a 2.123400e-04   4.539523 0.250 0.000 1.000000000
+Eya2     1.405637e-04   3.453428 0.369 0.064 1.000000000
+
+Top markers for imm.3 ordered by avg_log2FC:
+              p_val avg_log2FC pct.1 pct.2    p_val_adj
+Pi15   3.769438e-26   7.593186 0.289 0.002 5.100804e-22
+Pard3b 3.099539e-09   3.172451 0.263 0.036 4.194296e-05
+Tns1   6.914925e-08   2.817307 0.289 0.055 9.357277e-04
+Col1a2 6.845611e-08   2.445024 0.368 0.086 9.263481e-04
+
+Top markers for mes.1 ordered by avg_log2FC:
+              p_val avg_log2FC pct.1 pct.2 p_val_adj
+Xist   1.577053e-03   4.131952 0.263 0.050 1.0000000
+Tec    1.545758e-05   3.684067 0.368 0.033 0.2091719
+Tollip 4.599918e-03   3.469438 0.263 0.067 1.0000000
+Rpl10  8.907705e-04   2.949511 0.263 0.033 1.0000000
+
+Top markers for mes.2 ordered by avg_log2FC:
+             p_val avg_log2FC pct.1 pct.2    p_val_adj
+Mfap5 1.156124e-37   8.778234 0.274 0.000 1.564467e-33
+Xist  7.179711e-57   4.658335 0.489 0.058 9.715584e-53
+Cfh   3.782414e-39   3.505775 0.460 0.108 5.118363e-35
+Htra3 3.169802e-23   3.142287 0.283 0.055 4.289376e-19
+
+Top markers for mes.3 ordered by avg_log2FC:
+              p_val avg_log2FC pct.1 pct.2    p_val_adj
+Xist   1.521916e-86   5.518864 0.512 0.041 2.059457e-82
+Cfh    2.366624e-37   2.645566 0.405 0.113 3.202516e-33
+Ston2  6.881693e-28   2.302862 0.371 0.125 9.312307e-24
+Prss23 1.155562e-30   2.233853 0.361 0.106 1.563707e-26
+
+Top markers for neu.1 ordered by avg_log2FC:
+                p_val avg_log2FC pct.1 pct.2     p_val_adj
+Pomc    4.670882e-113   14.69772 0.906     0 6.320638e-109
+Kcnj6    1.911672e-91   11.36896 0.750     0  2.586875e-87
+Gm45846  1.407594e-69   10.45926 0.583     0  1.904756e-65
+Baiap3   9.880267e-82   10.23741 0.677     0  1.336998e-77
+
+Top markers for neu.2 ordered by avg_log2FC:
+             p_val avg_log2FC pct.1 pct.2    p_val_adj
+Ptpro 2.519787e-31  10.410485 0.604  0.00 3.409776e-27
+Rfx4  3.140959e-19   8.092362 0.375  0.00 4.250345e-15
+Pitx2 4.230513e-16   7.336584 0.312  0.00 5.724730e-12
+Grid1 5.044521e-30   7.204583 0.625  0.01 6.826246e-26
+
+Top markers for neu.3 ordered by avg_log2FC:
+              p_val avg_log2FC pct.1 pct.2 p_val_adj
+Gh     0.0007789428   9.738994 0.648     0 1.0000000
+Nr3c2  0.0005727904   5.656389 0.667     0 1.0000000
+Pou1f1 0.0000576982   5.568326 0.792     0 0.7807721
+Pappa2 0.0005159491   5.305960 0.673     0 1.0000000
+
+Top markers for neu.4 ordered by avg_log2FC:
+               p_val avg_log2FC pct.1 pct.2    p_val_adj
+Scn7a   6.031227e-22  10.814245 0.944 0.000 8.161457e-18
+Tmem108 1.488110e-17   8.147005 0.806 0.014 2.013710e-13
+Pi15    1.402561e-12   8.088683 0.583 0.000 1.897946e-08
+Ak5     1.041041e-10   7.911959 0.500 0.000 1.408737e-06
+
+Top markers for neu.5 ordered by avg_log2FC:
+               p_val avg_log2FC pct.1 pct.2    p_val_adj
+Sostdc1 1.029506e-18   7.942472 0.454     0 1.393128e-14
+Scn7a   3.758119e-11   7.559786 0.277     0 5.085486e-07
+Ugt8a   1.313529e-14   7.024532 0.361     0 1.777467e-10
+Entpd2  8.076860e-11   6.907004 0.269     0 1.092961e-06
+
+Top markers for vasc ordered by avg_log2FC:
+               p_val avg_log2FC pct.1 pct.2    p_val_adj
+Myct1   3.360566e-29   8.950383 0.508     0 4.547518e-25
+Mmrn2   8.026625e-22   8.054784 0.390     0 1.086163e-17
+Clec14a 2.552816e-20   7.972115 0.364     0 3.454471e-16
+Notch4  2.552816e-20   7.811981 0.364     0 3.454471e-16
+

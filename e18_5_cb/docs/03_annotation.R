@@ -376,12 +376,8 @@ my_colors =  c("#E6B0C2","#FADBD8","#FFB5B5","thistle1",
               
                 "#F1948A", "#CB4335", "thistle3",  "coral3",
                
-               "#4A235A",   
-               
-               "steelblue","red2", 
-               "#F4D03F","#1B4F72",
-             
-             "red2")
+               "#4A235A", "steelblue","red2", 
+               "#F4D03F","#1B4F72", "red2")
 (plot <- DimPlot(annotated_integrated, reduction = "umap", label = TRUE,repel = TRUE,label.size = 3,label.box = TRUE,cols = my_colors)+
     umap_theme() )
 
