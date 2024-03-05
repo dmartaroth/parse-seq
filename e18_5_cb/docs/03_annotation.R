@@ -369,17 +369,17 @@ Idents(annotated_integrated) <- factor(x = Idents(annotated_integrated), levels 
 
 my_colors =  c("#E6B0C2","#FADBD8","#FFB5B5","thistle1",
                "#424949",
-               "#ABEBC6",  "powderblue",
-                "#76448A",
-                "#9A7D0A","#C7CC8F", 
-               "pink3", "#F1C41F", "#B7A4DB", 
-               "#2E86C1", "#1C7F82",
-                "#F1948A", "thistle3",  "darkgreen", "#873600", "red2", 
+               "#ABEBC6", "#1C7F82",
+                "#7A8D0A","#C7CC8F", "darkolivegreen3",
+               "powderblue", "#7EBDC2", "#2E86C1", 
+               "pink3", "#F1C41F", "#B7A4DB",  "#76448A","darkseagreen",
+              
+                "#F1948A", "#CB4335", "thistle3",  "coral3",
                
-               "#4A235A", 
+               "#4A235A",   
                
-               "steelblue","#7EBDC2",
-               "#F4D03F","#1B4F72","#CB4335",
+               "steelblue","red2", 
+               "#F4D03F","#1B4F72",
              
              "red2")
 (plot <- DimPlot(annotated_integrated, reduction = "umap", label = TRUE,repel = TRUE,label.size = 3,label.box = TRUE,cols = my_colors)+
