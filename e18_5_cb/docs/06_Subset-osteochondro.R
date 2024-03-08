@@ -59,3 +59,66 @@ convenient_multi_feature_plot(seurat_object = osteochondro_subset, features = hy
                               colors_use = violet.gradient, name = "hypertrophy_stage",
                               dir = subset_osteochondro_dir, height = 10)
 
+
+
+
+
+
+# Your defined list of genes
+chondro.diff <- c("Sox9", "Ptch1", "Fgfr3", "Igf1", "Col2a1", "Acan", "Sox5", 
+                  "Runx2", "Col10a1", "Vegfa", "Pthlh", "Mmp13")
+
+
+
+
+
+vln_plot <- VlnPlot(
+  object = osteochondro_subset,
+  cols = my_colors,
+  features = chondro.diff,
+  split.by = "genotype",      # Split plots by genotype
+  pt.size = 0.1,              # Point size
+  combine = TRUE,
+  split.plot = TRUE
+)
+vln_plot
+
+convenient_save_plot(vln_plot, "chondro.diff_osteochondro-subset_vlnplot_by-genotype",width = 15, height = 12, dir = subset_osteochondro_dir)
+
+
+
+
+genes <- c("Cfh","Tns1","Cntn3","Eya2","Fat3","Vit","Peak1","Brip1","Cemip","Syne1","Ibsp","Col1a2","Htra3")
+
+
+vln_plot <- VlnPlot(
+  object = osteochondro_subset,
+  cols = my_colors,
+  features = genes,
+  split.by = "genotype",      # Split plots by genotype
+  pt.size = 0.1,              # Point size
+  combine = TRUE,
+  split.plot = TRUE
+)
+vln_plot
+
+convenient_save_plot(vln_plot, "selected_degs_osteochondro-subset_vlnplot_by-genotype",width = 13, height = 10, dir = subset_osteochondro_dir)
+
+
+smads <- c("Smad1","Smad5","Smad9")
+
+
+vln_plot <- VlnPlot(
+  object = osteochondro_subset,
+  cols = my_colors,
+  features = smads,
+  split.by = "genotype",      # Split plots by genotype
+  pt.size = 0.1,              # Point size
+  combine = TRUE,
+  split.plot = TRUE
+)
+vln_plot
+
+convenient_save_plot(vln_plot, "smads_osteochondro-subset_vlnplot_by-genotype",width = 8, height = 4, dir = subset_osteochondro_dir)
+
+
