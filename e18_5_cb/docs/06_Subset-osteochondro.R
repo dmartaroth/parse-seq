@@ -122,3 +122,106 @@ vln_plot
 convenient_save_plot(vln_plot, "smads_osteochondro-subset_vlnplot_by-genotype",width = 8, height = 4, dir = subset_osteochondro_dir)
 
 
+
+
+
+
+
+# Subset chondro.3 and chondro.2 clusters
+wnts <- c("Lrp5", "Axin2", "Nkd1", "Pax9", "Sfrp2")
+
+obj$cell_types <- Idents(obj)
+
+selected_cells_chondro3 <- names(obj$cell_types[obj$cell_types == "chondro.3"])
+selected_cells_chondro2 <- names(obj$cell_types[obj$cell_types == "chondro.2"])
+
+data_chondro3 <- FetchData(obj,
+                           vars = c(wnts, "genotype"),
+                           cells = selected_cells_chondro3,
+                           layer = "data")
+
+data_chondro2 <- FetchData(obj,
+                           vars = c(wnts, "genotype"),
+                           cells = selected_cells_chondro2,
+                           layer = "data")
+
+# Filter data to include only WNTs genes
+data_chondro3 <- data_chondro3[, c(wnts, "genotype")]
+data_chondro2 <- data_chondro2[, c(wnts, "genotype")]
+
+long_data_chondro3 <- reshape2::melt(data_chondro3)
+long_data_chondro2 <- reshape2::melt(data_chondro2)
+
+ggplot() +
+  geom_violin(data = long_data_chondro3, aes(x = variable, y = value, fill = genotype, color = genotype, alpha = 0.4),
+              position = position_dodge(width = 0), width = 2) +  # Adjust width as needed
+  geom_violin(data = long_data_chondro2, aes(x = variable, y = value, fill = genotype, color = genotype, alpha = 0.4),
+              position = position_dodge(width = 0), width = 2) +  # Adjust width as needed
+  scale_fill_manual(values = my_colors) +  # Adjust colors as needed
+  scale_color_manual(values = my_colors) +  # Adjust outline colors as needed
+  labs(x = "Genes", y = "Expression", fill = "Genotype", color = "Genotype") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5, face = "italic"),
+        panel.grid = element_blank()) +
+  coord_flip() +
+  facet_wrap(~variable, scales = "free_x", nrow = 1) +
+  theme(panel.spacing = unit(0.5, "lines"))  # Adjust spacing between panels
+
+
+
+
+chondro3 <- ggplot() +
+  geom_violin(data = long_data_chondro3, aes(x = variable, y = value, fill = genotype, color = genotype, alpha = 0.4),
+              position = position_dodge(width = 0), width = 2) +  # Adjust width as needed
+  scale_fill_manual(values = my_colors) +  # Adjust colors as needed
+  scale_color_manual(values = my_colors) +  # Adjust outline colors as needed
+  labs(x = "Genes", y = "Expression", fill = "Genotype", color = "Genotype") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5, face = "italic"),
+        panel.grid = element_blank()) +
+  coord_flip() +
+  facet_wrap(~variable, scales = "free_x", nrow = 1) +
+  theme(panel.spacing = unit(0.5, "lines"))  # Adjust spacing between panels
+
+
+
+chondro2 <- ggplot() +
+  geom_violin(data = long_data_chondro2, aes(x = variable, y = value, fill = genotype, color = genotype, alpha = 0.4),
+              position = position_dodge(width = 0), width = 2) +  # Adjust width as needed
+  scale_fill_manual(values = my_colors) +  # Adjust colors as needed
+  scale_color_manual(values = my_colors) +  # Adjust outline colors as needed
+  labs(x = "Genes", y = "Expression", fill = "Genotype", color = "Genotype") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5, face = "italic"),
+        panel.grid = element_blank()) +
+  coord_flip() +
+  facet_wrap(~variable, scales = "free_x", nrow = 1) +
+  theme(panel.spacing = unit(0.5, "lines"))  # Adjust spacing between panels
+
+
+
+
+
+combined_data <- rbind(transform(long_data_chondro3, cluster = "chondro.3"),
+                       transform(long_data_chondro2, cluster = "chondro.2"))
+
+
+dotcols <- c("hotpink3","dodgerblue")
+# Plot
+combined_plot <- ggplot(combined_data, aes(x = variable, y = value, fill = genotype, color = genotype, alpha = 0.2)) +
+  geom_violin(position = position_dodge(width = 0), width = 10) +  # Adjust width as needed
+  geom_jitter(size = 0.5, position = position_dodge2(width = 5), alpha = 0.9)+
+  scale_fill_manual(values = my_colors) +  # Adjust colors as needed
+  scale_color_manual(values = my_colors) +  # Adjust outline colors as needed
+  labs(x = "Genes", y = "Expression", fill = "Genotype", color = "Genotype") +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(),
+        panel.grid = element_blank()) +
+  facet_wrap(~ variable + cluster, scales = "fixed", nrow = 1, strip.position = "bottom") +
+  theme(strip.placement = "outside", strip.background = element_blank(),
+        strip.text = element_text(size = 7, face = "italic", hjust = 0)) +
+  theme(panel.spacing = unit(0, "lines"))  # Adjust spacing between panels
+
+# Print the combined plot
+print(combined_plot)
+
