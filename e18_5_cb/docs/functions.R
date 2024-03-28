@@ -687,16 +687,22 @@ convenient_multi_feature_plot <- function(seurat_object = obj, features, colors_
 
 
 # Convenience function to save the current plot
-convenient_save_plot <- function(plot, name, number = plot_number, width = 10, height = 10, dir = comparison_dir) {
+convenient_save_plot <- function(plot, name, number = plot_number, width = 10, height = 10, dir = comparison_dir, file_format = "png") {
   # Increment plot number
   number <- number + 1
   
-  # Save the plot
-  ggsave(filename = file.path(dir, sprintf("%02d_%s.png", number, name)), 
-         width = width, height = height, plot)
+  # Save the plot based on file format
+  if (tolower(file_format) == "pdf") {
+    ggsave(filename = file.path(dir, sprintf("%02d_%s.pdf", number, name)), 
+           width = width, height = height, plot)
+  } else {
+    ggsave(filename = file.path(dir, sprintf("%02d_%s.png", number, name)), 
+           width = width, height = height, plot)
+  }
   
   # Update plot_number in the global environment
   assign("plot_number", number, envir = .GlobalEnv)
   
   return(NULL)  # Return NULL since we're not returning a plot object
 }
+
