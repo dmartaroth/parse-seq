@@ -2,7 +2,7 @@
 #                  THEMES                 #
 # ## ################################# ## #
 # Custom colors
-my_colors <- c("#FFB6C1", "#ADD8E6", "#FFD700", "#98FB98", "#FFA07A")
+my_colors <- c("#FFB6C1", "#ADD8E6", "#FFD700", "#98FB98", "#FFA07A", "thistle1","#CB4335","#C7CC8F")
 error <- red $ bold
 note1 <- red $ bold
 note2 <- black $ bold

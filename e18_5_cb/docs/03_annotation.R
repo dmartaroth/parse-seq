@@ -284,14 +284,14 @@ ggsave(filename = file.path(clustering_dir, sprintf("%02d_smoothmuscle_featurepl
 # Based on these plots, identify potential clusters at low resolution
 
 # Create simple annotation files
-# Create_Cluster_Annotation_File(file_path = data.output, file_name = "0.1res_cluster_annotation")
+#Create_Cluster_Annotation_File(file_path = data.output, file_name = "0.1res_cluster_annotation")
 
 annotation_info <- Pull_Cluster_Annotation(annotation = here(data.output,"0.1res_cluster_annotation.csv"))
 
 # Rename clusters
 clustered_renamed_updated <- Rename_Clusters(seurat_object = clustered_renamed, new_idents = annotation_info$new_cluster_idents, meta_col_name = "lowres_annotation")
 
-(plot <- DimPlot(clustered_renamed_updated, reduction = "umap",label = TRUE,repel = TRUE,label.size = 3,label.box = TRUE,cols = my_colors)+
+(plot <- DimPlot(clustered_renamed_updated, reduction = "umap",label = TRUE,repel = TRUE,label.size = 3,label.box = TRUE,cols = pastel_palette)+
     umap_theme()) 
 
 
@@ -303,7 +303,7 @@ ggsave(filename = file.path(clustering_dir, sprintf("%02d_UMAP_lowres_annotated_
 
 
 ## High res cluster annotation ---------------------------------------------
-highres.clusters <- "RNA_snn_res.0.4"
+highres.clusters <- "RNA_snn_res.0.3"
 
 (plot <- DimPlot(clustered_renamed, reduction = "umap", label = TRUE,group.by = highres.clusters)+
     umap_theme() + scale_color_manual(values = pastel_palette)) 
@@ -313,7 +313,7 @@ plot_number <- plot_number + 1
 ggsave(filename = file.path(clustering_dir, sprintf("%02d_UMAP_%s.png", plot_number, highres.clusters)), width = 5, height = 3, plot)
 
 
-Idents(clustered_renamed) <- clustered_renamed$RNA_snn_res.0.4
+Idents(clustered_renamed) <- clustered_renamed$RNA_snn_res.0.3
 
 # Percent Difference in Expression
 # Basic FindAllMarkers DE test
@@ -325,7 +325,7 @@ all_markers_pct <- all_markers_pct %>%
   arrange(desc(avg_log2FC)) %>%
   arrange(cluster)
 
-write.csv(all_markers_pct, file = here(data.output, "0.4res_all_markers_pct.csv"))
+write.csv(all_markers_pct, file = here(data.output, "0.3res_all_markers_pct.csv"))
 
 top50_markers_pct <- all_markers_pct %>%
   group_by(cluster) %>%
@@ -333,11 +333,11 @@ top50_markers_pct <- all_markers_pct %>%
   top_n(n=50, wt = avg_log2FC)%>%
   arrange(cluster)
 
-write.csv(top50_markers_pct, file = here(data.output, "0.4res_top50_markers_pct.csv"))
+write.csv(top50_markers_pct, file = here(data.output, "0.3res_top50_markers_pct.csv"))
 
 # Extract the top N marker genes per cluster
 top_3 <- Extract_Top_Markers(marker_dataframe = all_markers_pct, num_genes = 3, named_vector = FALSE,make_unique = TRUE,rank_by = "avg_log2FC")
-write.csv(top_3, file = here(data.output, "0.4res_top3_markers_pct.csv"))
+write.csv(top_3, file = here(data.output, "0.3res_top3_markers_pct.csv"))
 
 
 
@@ -357,11 +357,11 @@ ggsave(filename = file.path(clustering_dir, sprintf("%02d_DotPlot_top3_markers_%
 
 
 # Create simple annotation files
-# Create_Cluster_Annotation_File(file_path = data.output, file_name = "0.4res_cluster_annotation")
+# Create_Cluster_Annotation_File(file_path = data.output, file_name = "0.3res_cluster_annotation")
 
-annotation_info <- Pull_Cluster_Annotation(annotation = here(data.output,"0.4res_cluster_annotation.csv"))
+annotation_info <- Pull_Cluster_Annotation(annotation = here(data.output,"0.3res_cluster_annotation.csv"))
 
-Idents(clustered_renamed_updated) <- clustered_renamed_updated$RNA_snn_res.0.4
+Idents(clustered_renamed_updated) <- clustered_renamed_updated$RNA_snn_res.0.3
 # Rename clusters
 annotated_integrated <- Rename_Clusters(seurat_object = clustered_renamed_updated, new_idents = annotation_info$new_cluster_idents)
 
