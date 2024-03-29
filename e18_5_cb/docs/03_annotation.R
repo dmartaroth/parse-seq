@@ -24,7 +24,7 @@ clustered_renamed <- readRDS(file = paste0(data.output,"/integrated_filtered_",c
 ## Low resolution cluster annotation ---------------------------------------
 lowres.clusters <- "RNA_snn_res.0.1"
 (plot <- DimPlot(clustered_renamed, reduction = "umap", group.by = lowres.clusters)+
-  umap_theme() + scale_color_manual(values = pastel_palette)) 
+    umap_theme() + scale_color_manual(values = pastel_palette)) 
 
 # Save plot
 plot_number <- plot_number + 1
@@ -342,11 +342,11 @@ write.csv(top_3, file = here(data.output, "0.3res_top3_markers_pct.csv"))
 
 
 (plot <- DotPlot( object = clustered_renamed,
-  features =   top_3,
-  scale.by = "size",
-  dot.scale = 8,
-  split.by = NULL,
-  cluster.idents = TRUE
+                  features =   top_3,
+                  scale.by = "size",
+                  dot.scale = 8,
+                  split.by = NULL,
+                  cluster.idents = TRUE
 ) + scale_colour_gradient2(low = "dodgerblue",
                            mid = "floralwhite",
                            high = "red2") +  custom_dotplot_theme() +RotatedAxis())
@@ -370,15 +370,15 @@ annotated_integrated$cell_types <- Idents(annotated_integrated)
 
 my_colors =  c("#E6B0C2","#FADBD8","#FFB5B5","thistle1",
                "#424949",
-               "#ABEBC6", "#1C7F82",
-                "#7A8D0A","#C7CC8F", "darkolivegreen3",
-               "powderblue", "#7EBDC2", "#2E86C1", 
+               "#ABEBC6","darkolivegreen3", "#1C7F82",
+               "powderblue", "#7EBDC2", "#2E86C1", "#1B4F72",
+               "#7A8D0A","#C7CC8F", 
                "pink3", "#F1C41F", "#B7A4DB",  "#76448A","darkseagreen",
-              
-                "#F1948A", "#CB4335", "thistle3",  "coral3",
+               
+               "coral3", "#CB4335", "thistle3",   "#F1948A",
                
                "#4A235A", "steelblue","red2", 
-               "#F4D03F","#1B4F72", "red2")
+               "#F4D03F", "red2")
 (plot <- DimPlot(annotated_integrated, reduction = "umap", label = TRUE,repel = TRUE,label.size = 3,label.box = TRUE,cols = my_colors)+
     umap_theme() )
 
