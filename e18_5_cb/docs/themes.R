@@ -8,16 +8,13 @@ note1 <- red $ bold
 note2 <- black $ bold
 note3 <- blue $ bold
 
-iss.colors =  c("#E6B0C2","#FADBD8","#FFB5B5","thistle1",
-                "#424949",
-                "#ABEBC6", "#1C7F82",
-                "#7A8D0A","#C7CC8F", "darkolivegreen3",
-                "powderblue", "#7EBDC2", "#2E86C1", 
-                "pink3", "#F1C41F", "#B7A4DB",  "#76448A","darkseagreen",
-                "#F1948A", "#CB4335")
+iss.colors =  c("#E6B0C2","#FADBD8","#FFB5B5","thistle1",     "#424949",
+                "#ABEBC6","darkolivegreen3", "#1C7F82",  "powderblue", "#7EBDC2","#2E86C1", "#1B4F72",
+                "#7A8D0A","#C7CC8F",  "pink3", "#F1C41F", "#B7A4DB",  "#76448A","darkseagreen",
+                "coral3", "#CB4335", "thistle3",   "#F1948A",  "#4A235A", "steelblue","red2", 
+                "#F4D03F", "red2")
 
-osteochondro.colors = c("#E6B0C2","#FADBD8","#FFB5B5","thistle1",
-                        "powderblue", "#7EBDC2", "#2E86C1")
+osteochondro.colors = c("#E6B0C2","#FADBD8","thistle1", "powderblue", "#7EBDC2", "#2E86C1", "#1B4F72")
 
 violet.gradient = c(
   "floralwhite",

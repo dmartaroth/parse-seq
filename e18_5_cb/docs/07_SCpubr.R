@@ -85,18 +85,18 @@ lapply(cran_packages, library, character.only = TRUE)
 # remotes::install_github(github_packages)
 # 
 # Change colors -----------------------------------------------------------
-colors <-  c("chondro.1" ="#E6B0C2","chondro.2" = "#FADBD8",
-             "chondro.3" ="#FFB5B5","chondro.4" = "thistle1",
-             "div" = "#424949",
-             "epith.1"= "#ABEBC6", "epith.2"=  "#1C7F82",
-             "imm.1"="#7A8D0A","imm.2"= "#C7CC8F","imm.3"= "darkolivegreen3",
-             "mes.1"="powderblue","mes.2"= "#7EBDC2","mes.3"= "#2E86C1", 
-             "neu.1"="pink3","neu.2"= "#F1C41F","neu.3"= "#B7A4DB",
-             "neu.4"=  "#76448A","neu.5"= "darkseagreen",
-             "unknown"="#F1948A","vasc"= "#CB4335")
+colors <-  c("chondro.1"="#E6B0C2","chondro.2"="#FADBD8","chondro.3"="#FFB5B5","ciliated"="thistle1",
+             "epith"="#424949",
+             "imm.1"="#ABEBC6","imm.2"="darkolivegreen3","mes.1"= "#1C7F82",
+             "mes.2"="powderblue","mes.3"= "#7EBDC2","mes.4"= "#2E86C1","mito.1"= "#1B4F72",
+             "mito.2"="#7A8D0A","neu.1"="#C7CC8F", 
+             "neu.2"="pink3","neu.3"= "#F1C41F","neu.4"= "#B7A4DB","neu.5"=  "#76448A",
+             "neu.6"="darkseagreen",
+             
+             "vasc.1"="coral3","vasc.2"= "#CB4335")
              
              
-             
+
 
 # Dim plots ---------------------------------------------------------------
 
@@ -197,8 +197,8 @@ convenient_save_plot(p, name = "DimPlot_SCpubr_highres_nolabels", dir = SCpubr.d
 
 
 ## Highlighting cells ------------------------------------------------------
-chondro.cells <- WhichCells(obj, idents = c("chondro.1","chondro.2","chondro.3","chondro.4"))
-osteo.cells <- WhichCells(obj, idents = c("mes.1","mes.2","mes.3"))
+chondro.cells <- WhichCells(obj, idents = c("chondro.1","chondro.2","chondro.3"))
+osteo.cells <- WhichCells(obj, idents = c("mes.1","mes.2","mes.3","mes.4"))
 
 # Compare Seurat and SCpubr way of highlighting cells.
 p1 <- SCpubr::do_DimPlot(sample = obj,
@@ -230,7 +230,7 @@ convenient_save_plot(p, name = "DimPlot_SCpubr_chondro_osteo", dir = SCpubr.dir,
 # Subset desired identities in a DimPlot.
 p <- SCpubr::do_DimPlot(sample = obj[, obj$cell_types %in% 
                                        c("chondro.1","chondro.2", "chondro.3",
-                                         "chondro.4","mes.1","mes.2","mes.3")],
+                                         "mes.1","mes.2","mes.3","mes.4")],
                         colors.use = colors,
                         legend.title = "annotated clusters (subset)",
                         legend.nrow = 1)
@@ -244,7 +244,7 @@ convenient_save_plot(p, name = "Selective_DimPlot_chondro_mes_SCpubr", dir = SCp
 # Select identities with idents.keep.
 p <- SCpubr::do_DimPlot(sample = obj,
                          idents.keep = c("chondro.1","chondro.2", "chondro.3",
-                                         "chondro.4","mes.1","mes.2","mes.3"),
+                                         "mes.1","mes.2","mes.3","mes.4"),
                          colors.use = colors,
                          na.value = "floralwhite",
                         legend.title = "annotated clusters (subset)",
@@ -394,11 +394,12 @@ p
 
 # Group clusters into three values for visualization purposes.
 obj$grouped_clusters <- as.character(obj$cell_types)
-obj$grouped_clusters[obj$grouped_clusters %in% c("chondro.1","chondro.2","chondro.3","chondro.4")] <- "chondro"
-obj$grouped_clusters[obj$grouped_clusters %in% c("mes","osteo.1","osteo.2","musc")] <- "osteo"
-obj$grouped_clusters[obj$grouped_clusters %in% c("neu.1","neu.2","neu.3","neu.4","neu.5","endocr","olf")] <- "neu"
-obj$grouped_clusters[obj$grouped_clusters %in% c("myeloid","osteocl")] <- "imm"
-obj$grouped_clusters[obj$grouped_clusters %in% c("unknown.1","unknown.2","unknown.3")] <- "unknown"
+obj$grouped_clusters[obj$grouped_clusters %in% c("chondro.1","chondro.2","chondro.3")] <- "chondro"
+obj$grouped_clusters[obj$grouped_clusters %in% c("mes.1","mes.2","mes.3","mes.4")] <- "osteo"
+obj$grouped_clusters[obj$grouped_clusters %in% c("neu.1","neu.2","neu.3","neu.4","neu.5","neu.6")] <- "neu"
+obj$grouped_clusters[obj$grouped_clusters %in% c("imm.1","imm.2")] <- "imm"
+obj$grouped_clusters[obj$grouped_clusters %in% c("vasc.1","vasc.2")] <- "vasc"
+obj$grouped_clusters[obj$grouped_clusters %in% c("mito.1","mito.2")] <- "mitotic"
 
 # Seurat Feature Plot using split.by.
 p <- Seurat::FeaturePlot(obj, 

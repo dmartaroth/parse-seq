@@ -64,7 +64,7 @@ convenient_save_plot(p, name = "Hecw1_featureplot", dir = schaystack.dir,height 
 # Apply singlecellHayStack to osteochondro cluster only -------------------
 
 # Subset chondro clusters
-osteochondro.clusters <- c("chondro.1","chondro.2","chondro.3","chondro.4","mes.1","mes.2","mes.3")
+osteochondro.clusters <- c("chondro.1","chondro.2","chondro.3","mes.1","mes.2","mes.3","mes.4")
 osteochondro_subset <- subset(obj, idents = osteochondro.clusters)
 
 (plot <- DimPlot(osteochondro_subset, reduction = "umap", label = FALSE,split.by = "genotype",cols = osteochondro.colors))
@@ -73,132 +73,132 @@ osteochondro_subset <- subset(obj, idents = osteochondro.clusters)
 res.pc20 <- haystack(x = osteochondro_subset, coord = "integrated.cca",assay = "RNA", slot = "data")
 
 results <- show_result_haystack(res.haystack = res.pc20, n = 50)
-write.csv(results, file = here(schaystack.dir,"haystack_result.csv"))
+write.csv(results, file = here::here(schaystack.dir,"haystack_result.csv"))
 
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Col1a1", split.by = "genotype",use_viridis = TRUE
-                            ,viridis.palette = "cividis", viridis.direction = 1,
-                            na.value = "floralwhite", plot_cell_borders = FALSE, 
-                            order = TRUE,pt.size = 1.5)
-
-convenient_save_plot(p, name = "Col1a1_featureplot", dir = schaystack.dir,height = 6, width = 8)
-
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Ptn", split.by = "genotype",use_viridis = TRUE
-                            ,viridis.palette = "cividis", viridis.direction = 1,
-                            na.value = "floralwhite", plot_cell_borders = FALSE, 
-                            order = TRUE,pt.size = 1.5)
-
-
-convenient_save_plot(p, name = "Ptn_featureplot", dir = schaystack.dir,height = 6, width = 8)
-
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Cdh11", split.by = "genotype",use_viridis = TRUE
-                       ,viridis.palette = "cividis", viridis.direction = 1,
-                       na.value = "floralwhite", plot_cell_borders = FALSE, 
-                       order = TRUE,pt.size = 1.5)
-
-
-convenient_save_plot(p, name = "Cdh11_featureplot", dir = schaystack.dir,height = 6, width = 8)
-
-
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Col3a1", split.by = "genotype",use_viridis = TRUE
-                            ,viridis.palette = "cividis", viridis.direction = 1,
-                            na.value = "floralwhite", plot_cell_borders = FALSE, 
-                            order = TRUE,pt.size = 1.5)
-
-
-convenient_save_plot(p, name = "Col3a1_featureplot", dir = schaystack.dir,height = 6, width = 8)
-
-
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Col5a2", split.by = "genotype",use_viridis = TRUE
-                            ,viridis.palette = "cividis", viridis.direction = 1,
-                            na.value = "floralwhite", plot_cell_borders = FALSE, 
-                            order = TRUE,pt.size = 1.5)
-
-
-convenient_save_plot(p, name = "Col5a2_featureplot", dir = schaystack.dir,height = 6, width = 8)
-
-
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Ptprd", split.by = "genotype",use_viridis = TRUE
-                            ,viridis.palette = "cividis", viridis.direction = 1,
-                            na.value = "floralwhite", plot_cell_borders = FALSE, 
-                            order = TRUE,pt.size = 1.5)
-
-
-convenient_save_plot(p, name = "Ptprd_featureplot", dir = schaystack.dir,height = 6, width = 8)
-
-
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Cped1", split.by = "genotype",use_viridis = TRUE
-                            ,viridis.palette = "cividis", viridis.direction = 1,
-                            na.value = "floralwhite", plot_cell_borders = FALSE, 
-                            order = TRUE,pt.size = 1.5)
-
-
-convenient_save_plot(p, name = "Cped1_featureplot", dir = schaystack.dir,height = 6, width = 8)
-
-
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Postn", split.by = "genotype",use_viridis = TRUE
-                            ,viridis.palette = "cividis", viridis.direction = 1,
-                            na.value = "floralwhite", plot_cell_borders = FALSE, 
-                            order = TRUE,pt.size = 1.5)
-
-
-convenient_save_plot(p, name = "Postn_featureplot", dir = schaystack.dir,height = 6, width = 8)
-
-
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Cacna1g", split.by = "genotype",use_viridis = TRUE
-                            ,viridis.palette = "cividis", viridis.direction = 1,
-                            na.value = "floralwhite", plot_cell_borders = FALSE, 
-                            order = TRUE,pt.size = 1.5)
-
-
-convenient_save_plot(p, name = "Cacna1g_featureplot", dir = schaystack.dir,height = 6, width = 8)
-
-
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Fbn2", split.by = "genotype",use_viridis = TRUE
-                            ,viridis.palette = "cividis", viridis.direction = 1,
-                            na.value = "floralwhite", plot_cell_borders = FALSE, 
-                            order = TRUE,pt.size = 1.5)
-
-
-convenient_save_plot(p, name = "Fbn2_featureplot", dir = schaystack.dir,height = 6, width = 8)
-
-
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Aspn", split.by = "genotype",use_viridis = TRUE
-                            ,viridis.palette = "cividis", viridis.direction = 1,
-                            na.value = "floralwhite", plot_cell_borders = FALSE, 
-                            order = TRUE,pt.size = 1.5)
-
-
-convenient_save_plot(p, name = "Aspn_featureplot", dir = schaystack.dir,height = 6, width = 8)
-
-
-p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
-                            features = "Thbs2", split.by = "genotype",use_viridis = TRUE
-                            ,viridis.palette = "cividis", viridis.direction = 1,
-                            na.value = "floralwhite", plot_cell_borders = FALSE, 
-                            order = TRUE,pt.size = 1.5)
-
-
-convenient_save_plot(p, name = "Thbs2_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Col1a1", split.by = "genotype",use_viridis = TRUE
+#                             ,viridis.palette = "cividis", viridis.direction = 1,
+#                             na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                             order = TRUE,pt.size = 1.5)
+# 
+# convenient_save_plot(p, name = "Col1a1_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# 
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Ptn", split.by = "genotype",use_viridis = TRUE
+#                             ,viridis.palette = "cividis", viridis.direction = 1,
+#                             na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                             order = TRUE,pt.size = 1.5)
+# 
+# 
+# convenient_save_plot(p, name = "Ptn_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# 
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Cdh11", split.by = "genotype",use_viridis = TRUE
+#                        ,viridis.palette = "cividis", viridis.direction = 1,
+#                        na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                        order = TRUE,pt.size = 1.5)
+# 
+# 
+# convenient_save_plot(p, name = "Cdh11_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# 
+# 
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Col3a1", split.by = "genotype",use_viridis = TRUE
+#                             ,viridis.palette = "cividis", viridis.direction = 1,
+#                             na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                             order = TRUE,pt.size = 1.5)
+# 
+# 
+# convenient_save_plot(p, name = "Col3a1_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# 
+# 
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Col5a2", split.by = "genotype",use_viridis = TRUE
+#                             ,viridis.palette = "cividis", viridis.direction = 1,
+#                             na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                             order = TRUE,pt.size = 1.5)
+# 
+# 
+# convenient_save_plot(p, name = "Col5a2_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# 
+# 
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Ptprd", split.by = "genotype",use_viridis = TRUE
+#                             ,viridis.palette = "cividis", viridis.direction = 1,
+#                             na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                             order = TRUE,pt.size = 1.5)
+# 
+# 
+# convenient_save_plot(p, name = "Ptprd_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# 
+# 
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Cped1", split.by = "genotype",use_viridis = TRUE
+#                             ,viridis.palette = "cividis", viridis.direction = 1,
+#                             na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                             order = TRUE,pt.size = 1.5)
+# 
+# 
+# convenient_save_plot(p, name = "Cped1_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# 
+# 
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Postn", split.by = "genotype",use_viridis = TRUE
+#                             ,viridis.palette = "cividis", viridis.direction = 1,
+#                             na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                             order = TRUE,pt.size = 1.5)
+# 
+# 
+# convenient_save_plot(p, name = "Postn_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# 
+# 
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Cacna1g", split.by = "genotype",use_viridis = TRUE
+#                             ,viridis.palette = "cividis", viridis.direction = 1,
+#                             na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                             order = TRUE,pt.size = 1.5)
+# 
+# 
+# convenient_save_plot(p, name = "Cacna1g_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# 
+# 
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Fbn2", split.by = "genotype",use_viridis = TRUE
+#                             ,viridis.palette = "cividis", viridis.direction = 1,
+#                             na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                             order = TRUE,pt.size = 1.5)
+# 
+# 
+# convenient_save_plot(p, name = "Fbn2_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# 
+# 
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Aspn", split.by = "genotype",use_viridis = TRUE
+#                             ,viridis.palette = "cividis", viridis.direction = 1,
+#                             na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                             order = TRUE,pt.size = 1.5)
+# 
+# 
+# convenient_save_plot(p, name = "Aspn_featureplot", dir = schaystack.dir,height = 6, width = 8)
+# 
+# 
+# p <- SCpubr::do_FeaturePlot(sample = osteochondro_subset,
+#                             features = "Thbs2", split.by = "genotype",use_viridis = TRUE
+#                             ,viridis.palette = "cividis", viridis.direction = 1,
+#                             na.value = "floralwhite", plot_cell_borders = FALSE, 
+#                             order = TRUE,pt.size = 1.5)
+# 
+# 
+# convenient_save_plot(p, name = "Thbs2_featureplot", dir = schaystack.dir,height = 6, width = 8)
 
 
 # Violin plot of top 10 hits showing differences between chondro clusters as a whole and osteo as a whole
 
-top10 <- c("Col1a1","Ptn","Cdh11","Col3a1","Col5a2","Ptprd","Cped1","Postn","Cacna1g","Fbn2")
+top10 <- c("Plp1","Lhx2","Atp1a2","Ptprc","Gfy","Mpz","Abca8a","Ptn","Atp8b4","Tubb3")
 
 
-selected_cells_chondro <- names(obj$cell_types[obj$cell_types %in% c("chondro.1", "chondro.2", "chondro.3", "chondro.4")])
-selected_cells_osteo <- names(obj$cell_types[obj$cell_types %in% c("mes.1", "mes.2", "mes.3")])
+selected_cells_chondro <- names(obj$cell_types[obj$cell_types %in% c("chondro.1", "chondro.2", "chondro.3")])
+selected_cells_osteo <- names(obj$cell_types[obj$cell_types %in% c("mes.1", "mes.2", "mes.3","mes.4")])
 
 # Fetch data for both chondro and osteo groups
 data_chondro <- FetchData(obj,
@@ -369,7 +369,7 @@ generate_violin_plot_multiple <- function(obj, top_genes_number, increment, cell
       theme(panel.spacing = unit(0, "lines"))
     
     # Save the plot using convenient_save_plot function
-    convenient_save_plot(plot, name = paste0("tophaystack_violin_plot_chondro1-4_vs_mes1-3_", start_index, "_to_", end_index), dir = schaystack.dir, height = 6, width = 16, file_format = file_format)
+    convenient_save_plot(plot, name = paste0("tophaystack_violin_plot_chondro1-3_vs_mes1-4_", start_index, "_to_", end_index), dir = schaystack.dir, height = 6, width = 16, file_format = file_format)
     
     # Add the plot to the list of plots
     plots[[paste0(start_index, "_to_", end_index)]] <- plot
@@ -381,7 +381,7 @@ generate_violin_plot_multiple <- function(obj, top_genes_number, increment, cell
 # Example usage of the function with multiple cell types and iterative gene selection
 top_genes_number <- 30  # change as needed
 increment <- 3
-cell_types_list <- c("chondro.1", "chondro.2", "chondro.3", "chondro.4", "mes.1", "mes.2", "mes.3")
+cell_types_list <- c("chondro.1", "chondro.2", "chondro.3", "mes.1", "mes.2", "mes.3","mes.4")
 plots <- generate_violin_plot_multiple(obj, top_genes_number, increment, cell_types_list, my_colors)
 
 
