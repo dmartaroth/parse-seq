@@ -23,11 +23,15 @@ obj <- readRDS(file = paste0(data.output,"/annotated_integrated_filtered_",contr
 
 my_colors =  c("#E6B0C2","#FADBD8","#FFB5B5","thistle1",
                "#424949",
-               "#ABEBC6", "#1C7F82",
-               "#7A8D0A","#C7CC8F", "darkolivegreen3",
-               "powderblue", "#7EBDC2", "#2E86C1", 
+               "#ABEBC6","darkolivegreen3", "#1C7F82",
+               "powderblue", "#7EBDC2", "#2E86C1", "#1B4F72",
+               "#7A8D0A","#C7CC8F", 
                "pink3", "#F1C41F", "#B7A4DB",  "#76448A","darkseagreen",
-               "#F1948A", "#CB4335")
+               
+               "coral3", "#CB4335", "thistle3",   "#F1948A",
+               
+               "#4A235A", "steelblue","red2", 
+               "#F4D03F", "red2")
 (plot <- DimPlot(obj, reduction = "umap", label = FALSE)+
     umap_theme() + scale_color_manual(values = my_colors))
 
@@ -68,14 +72,18 @@ Idents(obj) <- factor(x = Idents(obj), levels = sort(levels(obj)))
 
 
 splitcolors =  c("#E6B0C2","#E6B0C2","#FADBD8","#FADBD8","#FFB5B5","#FFB5B5",
-                 "thistle1","thistle1","#424949",
-                 "#424949","#ABEBC6",
-                 "#ABEBC6", "#1C7F82", "#1C7F82",
-                 "#7A8D0A", "#7A8D0A","#C7CC8F", "#C7CC8F", "darkolivegreen3",
-                 "darkolivegreen3","powderblue", "powderblue", "#7EBDC2","#7EBDC2", 
-                 "#2E86C1", "#2E86C1","pink3", "pink3", "#F1C41F","#F1C41F",
-                 "#B7A4DB","#B7A4DB",  "#76448A","#76448A","darkseagreen",
-                 "darkseagreen","#F1948A","#F1948A", "#CB4335", "#CB4335")
+                 "thistle1","thistle1",
+                 "#424949","#424949",
+                 "#ABEBC6","#ABEBC6","darkolivegreen3","darkolivegreen3", "#1C7F82",
+                 "#1C7F82",
+                 "powderblue",                 "powderblue", "#7EBDC2",  "#7EBDC2", 
+                 "#2E86C1","#2E86C1", "#1B4F72", "#1B4F72",
+                 "#7A8D0A","#7A8D0A","#C7CC8F","#C7CC8F", 
+                 "pink3","pink3", "#F1C41F", "#F1C41F", "#B7A4DB", "#B7A4DB",
+                 "#76448A","#76448A","darkseagreen","darkseagreen",
+                 "coral3","coral3", "#CB4335", "#CB4335", "thistle3", "thistle3",
+                 "#F1948A","#F1948A",
+                 "#4A235A","#4A235A", "steelblue", "steelblue")
 
 (plot <- DimPlot(obj, reduction = "umap", label = FALSE,split.by = "genotype")+
     umap_theme() + scale_color_manual(values = splitcolors)) + theme(legend.position = "bottom")
@@ -86,16 +94,17 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_UMAP_celltype_genotype_s
 
 
 # Define your cluster names
-cluster_names <- c("chondro.1", "chondro.2", "chondro.3", "chondro.4",
-                   "div", "epith.1","epith.2","imm.1","imm.2","imm.3",
-                   "mes.1","mes.2","mes.3", "neu.1", "neu.2", "neu.3", "neu.4", 
-                   "neu.5","vasc")
+cluster_names <- c("chondro.1", "chondro.2", "chondro.3",
+                   "ciliated", "epith","imm.1","imm.2",
+                   "mes.1","mes.2","mes.3", "mes.4","mito.1","mito.2",
+                   "neu.1", "neu.2", "neu.3", "neu.4", 
+                   "neu.5","neu.6","vasc.1","vasc.2")
 
 # Call the function to find top markers for all clusters
 all_top_pos_markers <- findTopPosMarkers(obj, cluster_names)
 
 # Access top markers for a specific cluster
-head(all_top_pos_markers$chondro.3)
+head(all_top_pos_markers$chondro.1)
 
 # Call the function to extract and order top markers
 ordered_top_pos_markers <- extractTopPosMarkers(all_top_pos_markers)
@@ -133,7 +142,7 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_top-pos-response-markers
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Cntn3","Peak1","Rtl3"),
+      features = c("Gm26992","Cntn3","Elmo1"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -146,13 +155,14 @@ plot_number <- plot_number + 1
 ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.1_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 # chondro.2
+head(all_top_pos_markers$chondro.2)
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Gm26992","Brip1", "Spp1"),
+      features = c("Ndnf","Brinp1", "Cd55"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -165,13 +175,14 @@ plot_number <- plot_number + 1
 ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.2_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 # chondro.3
+head(all_top_pos_markers$chondro.3)
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("4932411K12Rik","Cemip", "Steap4"),
+      features = c("4932411K12Rik","Cemip", "Brip1"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -183,14 +194,15 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.2_DEG_featureplo
 plot_number <- plot_number + 1
 ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.3_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
-# chondro.4
+# ciliated
+head(all_top_pos_markers$ciliated)
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Vit","Gm26992", "Cntn3"),
+      features = c("Lrrc36","Slc9a3r1", "Dnah7a"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -200,16 +212,17 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.3_DEG_featureplo
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.4_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_ciliated_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
-# div
+# epith
+head(all_top_pos_markers$epith)
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Thbs2","Pdzrn4","Fat3"),
+      features = c("Gh","Chgb","Nnat"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -219,58 +232,18 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_chondro.4_DEG_featureplo
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_div_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
-
-
-
-# epith.1
-(plot <-
-    FeaturePlot_scCustom(
-      seurat_object = obj,
-      reduction = "umap",
-      split.by = "genotype",
-      na_cutoff = 0,
-      features = c("Gh","Chgb","Nrg1"),
-      colors_use = c(
-        "grey95",
-        "plum1",
-        "orchid",
-        "orchid4",
-        "darkorchid4")))
-
-# Save plot
-plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_epith.1_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
-
-
-# epith.2
-(plot <-
-    FeaturePlot_scCustom(
-      seurat_object = obj,
-      reduction = "umap",
-      split.by = "genotype",
-      na_cutoff = 0,
-      features = c("Lmntd1","Wdr49",'Kndc1'),
-      colors_use = c(
-        "grey95",
-        "plum1",
-        "orchid",
-        "orchid4",
-        "darkorchid4")))
-
-# Save plot
-plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_epith.2_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_epith_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 
 # imm.1
+head(all_top_pos_markers$imm.1)
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Ccl7","Cmpk2", "Ifit2"),
+      features = c("Col1a2","Ror1", "Cdk8"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -284,13 +257,14 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_imm.1_DEG_featureplots.p
 
 
 # imm.2
+head(all_top_pos_markers$imm.2)
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Ibsp","Hist1h4a", "Eya2"),
+      features = c("Eif2b5","Car13", "Akap6"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -303,35 +277,16 @@ plot_number <- plot_number + 1
 ggsave(filename = file.path(analysis_dir, sprintf("%02d_imm.2_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 
-# imm.3
-(plot <-
-    FeaturePlot_scCustom(
-      seurat_object = obj,
-      reduction = "umap",
-      split.by = "genotype",
-      na_cutoff = 0,
-      features = c("Pi15","Pard3b","Tns1"),
-      colors_use = c(
-        "grey95",
-        "plum1",
-        "orchid",
-        "orchid4",
-        "darkorchid4")))
-
-# Save plot
-plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_imm.3_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
-
-
 
 # mes.1
+head(all_top_pos_markers$mes.1)
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Tec","Tollip","Rpl10"),
+      features = c("Tec","1700029H14Rik","Gli1"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -344,13 +299,14 @@ plot_number <- plot_number + 1
 ggsave(filename = file.path(analysis_dir, sprintf("%02d_mes.1_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 # mes.2
+head(all_top_pos_markers$mes.2)
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Mfap5","Cfh","Htra3"),
+      features = c("Mfap5","Cfh","Il1rapl1"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -364,13 +320,14 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_mes.2_DEG_featureplots.p
 
 
 # mes.3
+head(all_top_pos_markers$mes.3)
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Cfh","Ston2","Prss23"),
+      features = c("Gdf10","Cyp1b1","Kcnd2"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -383,14 +340,78 @@ plot_number <- plot_number + 1
 ggsave(filename = file.path(analysis_dir, sprintf("%02d_mes.3_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 
-# neu.1
+# mes.4
+head(all_top_pos_markers$mes.4)
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Pomc","Kcnj6","Gm45846"),
+      features = c("Cfh","Chrdl1","Kcnd2"),
+      colors_use = c(
+        "grey95",
+        "plum1",
+        "orchid",
+        "orchid4",
+        "darkorchid4")))
+
+# Save plot
+plot_number <- plot_number + 1
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_mes.4_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
+
+
+
+# mito.1
+head(all_top_pos_markers$mito.1)
+(plot <-
+    FeaturePlot_scCustom(
+      seurat_object = obj,
+      reduction = "umap",
+      split.by = "genotype",
+      na_cutoff = 0,
+      features = c("Vit","Cntn3","Gm26992"),
+      colors_use = c(
+        "grey95",
+        "plum1",
+        "orchid",
+        "orchid4",
+        "darkorchid4")))
+
+# Save plot
+plot_number <- plot_number + 1
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_mito.1_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
+
+
+# mito.2
+head(all_top_pos_markers$mito.2)
+(plot <-
+    FeaturePlot_scCustom(
+      seurat_object = obj,
+      reduction = "umap",
+      split.by = "genotype",
+      na_cutoff = 0,
+      features = c("Ibsp","Mmp13","Spp1"),
+      colors_use = c(
+        "grey95",
+        "plum1",
+        "orchid",
+        "orchid4",
+        "darkorchid4")))
+
+# Save plot
+plot_number <- plot_number + 1
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_mito.2_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
+
+# neu.1
+head(all_top_pos_markers$neu.1)
+(plot <-
+    FeaturePlot_scCustom(
+      seurat_object = obj,
+      reduction = "umap",
+      split.by = "genotype",
+      na_cutoff = 0,
+      features = c("Scn7a","Ak5","Epha6"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -405,13 +426,15 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_neu.1_DEG_featureplots.p
 
 
 # neu.2
+head(all_top_pos_markers$neu.2)
+
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Ptpro","Rfx4","Pitx2"),
+      features = c("Rab34","Mgat4c","Phykpl"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -425,13 +448,15 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_neu.2_DEG_featureplots.p
 
 
 # neu.3
+head(all_top_pos_markers$neu.3)
+
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Gh","Nr3c2","Pou1f1"),
+      features = c("Pomc","Ptpro","Pitx2"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -445,13 +470,15 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_neu.3_DEG_featureplots.p
 
 
 # neu.4
+head(all_top_pos_markers$neu.4)
+
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Scn7a","Tmem108","Pi15"),
+      features = c("Pomc","Gpc5","Gh"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -464,13 +491,15 @@ plot_number <- plot_number + 1
 ggsave(filename = file.path(analysis_dir, sprintf("%02d_neu.4_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 # neu.5
+head(all_top_pos_markers$neu.5)
+
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Sostdc1","Scn7a","Ugt8a"),
+      features = c("Pomc","Gm45455","Rit2"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -483,14 +512,16 @@ plot_number <- plot_number + 1
 ggsave(filename = file.path(analysis_dir, sprintf("%02d_neu.5_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 
-# vasc
+# neu.6
+head(all_top_pos_markers$neu.6)
+
 (plot <-
     FeaturePlot_scCustom(
       seurat_object = obj,
       reduction = "umap",
       split.by = "genotype",
       na_cutoff = 0,
-      features = c("Myct1","Mmrn2","Clec14a"),
+      features = c("Scn7a","Entpd2","Gm26992"),
       colors_use = c(
         "grey95",
         "plum1",
@@ -500,7 +531,46 @@ ggsave(filename = file.path(analysis_dir, sprintf("%02d_neu.5_DEG_featureplots.p
 
 # Save plot
 plot_number <- plot_number + 1
-ggsave(filename = file.path(analysis_dir, sprintf("%02d_vasc_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_neu.6_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
+
+# vasc.1
+head(all_top_pos_markers$vasc.1)
+(plot <-
+    FeaturePlot_scCustom(
+      seurat_object = obj,
+      reduction = "umap",
+      split.by = "genotype",
+      na_cutoff = 0,
+      features = c("Peak1","Syne1","Filip1l"),
+      colors_use = c(
+        "grey95",
+        "plum1",
+        "orchid",
+        "orchid4",
+        "darkorchid4")))
+
+# Save plot
+plot_number <- plot_number + 1
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_vasc.1_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 
 
+# vasc.2
+head(all_top_pos_markers$vasc.2)
+(plot <-
+    FeaturePlot_scCustom(
+      seurat_object = obj,
+      reduction = "umap",
+      split.by = "genotype",
+      na_cutoff = 0,
+      features = c("Dync1i1","Cyp26b1","Fam78b"),
+      colors_use = c(
+        "grey95",
+        "plum1",
+        "orchid",
+        "orchid4",
+        "darkorchid4")))
+
+# Save plot
+plot_number <- plot_number + 1
+ggsave(filename = file.path(analysis_dir, sprintf("%02d_vasc.2_DEG_featureplots.png", plot_number)), width = 6, height = 7, plot)
 

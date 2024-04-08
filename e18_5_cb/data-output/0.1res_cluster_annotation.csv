@@ -1,12 +1,13 @@
 cluster,cell_type,sub_type,notes
-0,mes,,ECM enriched
-1,chondro,,
-2,epith,,respiratory and olfactory association
-3,neu.1,,"brain, olfactory"
-4,vasc,,
-5,mito,,"mitotic cells, might be filtered out with cell cycle regression"
-6,neu.2,,glial cells
-7,imm,,"neuts, microglia"
-8,neu.3,,"neuron projection, synapses"
-9,musc,,"smooth muscle contraction, maybe innervation"
-10,ciliated,,ciliary components
+0,mes,,
+1,chondro.1,,
+2,vasc.1,,
+3,neu.1,,
+4,neu.2,,
+5,neu.3,,
+6,chondro.2,,
+7,imm.1,,
+8,vasc.2,,
+9,neu.4,,
+10,musc,,
+11,unknown,,
