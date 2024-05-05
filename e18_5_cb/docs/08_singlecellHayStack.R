@@ -431,3 +431,4 @@ genotype_col <- "genotype"
 
 # Replace 'sample' with your actual sample data and 'schaystack_dir' with your directory path
 generate_feature_plots(sample = osteochondro_subset, top_genes_number, increment, gene_names, genotype_col, dir = schaystack.dir)
+

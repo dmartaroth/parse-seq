@@ -186,3 +186,14 @@ saveRDS(filtered_ctrl, file = paste0(data.output,"/filtered_",control,"_",sample
 saveRDS(filtered_ncko, file = paste0(data.output,"/filtered_",mutant,"_",sample,".Rds"))
 saveRDS(filtered_ctrltopup, file = paste0(data.output,"/filtered_",control,"_",sample,"_topup",".Rds"))
 saveRDS(filtered_nckotopup, file = paste0(data.output,"/filtered_",mutant,"_",sample,"_topup",".Rds"))
+
+
+# 
+filtered_ctrl
+summary(colSums(filtered_ctrl, slot = "counts"))
+filtered_ctrltopup
+summary(colSums(filtered_ctrltopup, slot = "counts"))
+filtered_ncko
+summary(colSums(filtered_ncko, slot = "counts"))
+filtered_nckotopup
+summary(colSums(filtered_nckotopup, slot = "counts"))

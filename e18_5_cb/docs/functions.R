@@ -687,7 +687,7 @@ convenient_multi_feature_plot <- function(seurat_object = obj, features, colors_
 
 
 # Convenience function to save the current plot
-convenient_save_plot <- function(plot, name, number = plot_number, width = 10, height = 10, dir = comparison_dir, file_format = "png") {
+convenient_save_plot <- function(plot, name, number = plot_number, width = 10, height = 10, dir = comparison_dir, file_format = "pdf") {
   # Increment plot number
   number <- number + 1
   
