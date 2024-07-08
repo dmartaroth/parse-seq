@@ -1,0 +1,30 @@
+Shapiro-Wilk Normality Test Results:
+# A tibble: 3 × 2
+  genotype shapiro_p_value
+  <fct>              <dbl>
+1 ctrl               0.181
+2 Bmp2 cko           0.371
+3 Bmp7 cko           0.149
+
+ANOVA Results for Proportion of ColX_area to DAPI_area:
+            Df Sum Sq Mean Sq F value   Pr(>F)    
+genotype     2 0.8252  0.4126   51.21 6.62e-05 ***
+Residuals    7 0.0564  0.0081                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Tukey HSD Post-Hoc Test Results:
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = proportion_ColX_to_DAPI ~ genotype, data = filtered_data)
+
+$genotype
+                        diff        lwr        upr     p adj
+Bmp2 cko-ctrl     -0.6935865 -0.8954901 -0.4916829 0.0000505
+Bmp7 cko-ctrl     -0.4119997 -0.6278438 -0.1961557 0.0019892
+Bmp7 cko-Bmp2 cko  0.2815868  0.0796832  0.4834904 0.0110060
+
+Cohen's d for Bmp2 cko vs ctrl: -11.79363 
+Cohen's d for Bmp7 cko vs ctrl: -3.945621 
+Cohen's d for Bmp2 cko vs Bmp7 cko: -2.602495 

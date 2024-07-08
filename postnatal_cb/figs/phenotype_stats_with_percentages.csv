@@ -1,0 +1,9 @@
+genotype,count,missing_psph_count,missing_psph_proportion,cleft_count,cleft_proportion,frag_basisph_count,frag_basisph_proportion,basisph_notch_count,basisph_notch_proportion,missing_psph_percent,cleft_percent,frag_basisph_percent,basisph_notch_percent
+Bmp2 ncko,4,4,1,6,1.5,6,1.5,4,1,100,150,150,100
+Bmp2Bmp7ncko,1,1,1,2,2,2,2,1,1,100,200,200,100
+Bmp2flBmp7hetncko,2,2,1,4,2,4,2,2,1,100,200,200,100
+Bmp2hetBmp7hetncko,2,2,1,2,1,2,1,3,1.5,100,100,100,150
+Bmp7 cko,2,3,1.5,2,1,2,1,4,2,150,100,100,200
+Bmp7 ko,7,10,1.4285714285714286,14,2,7,1,14,2,142.85714285714286,200,100,200
+Bmp7 ncko,5,5,1,10,2,5,1,9,1.8,100,200,100,180
+ctrl,7,7,1,7,1,7,1,8,1.1428571428571428,100,100,100,114.28571428571428

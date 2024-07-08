@@ -1,0 +1,32 @@
+
+Expected Frequencies for ISS:
+          
+                  3        2         1 0
+  ctrl     5.612245 4.081633 15.306122 0
+  Bmp2 cko 2.693878 1.959184  7.346939 0
+  Bmp7 cko 2.693878 1.959184  7.346939 0
+
+Expected Frequencies for SOS:
+          
+                   3        2         1 0
+  ctrl     1.5306122 5.612245 17.857143 0
+  Bmp2 cko 0.7346939 2.693878  8.571429 0
+  Bmp7 cko 0.7346939 2.693878  8.571429 0
+
+Fisher's Exact Test Results for ISS:
+
+	Fisher's Exact Test for Count Data
+
+data:  table(df_clean_filtered$genotype_grouped, df_clean_filtered$ISS)
+p-value = 0.01485
+alternative hypothesis: two.sided
+
+
+Fisher's Exact Test Results for SOS:
+
+	Fisher's Exact Test for Count Data
+
+data:  table(df_clean_filtered$genotype_grouped, df_clean_filtered$SOS)
+p-value = 0.2103
+alternative hypothesis: two.sided
+

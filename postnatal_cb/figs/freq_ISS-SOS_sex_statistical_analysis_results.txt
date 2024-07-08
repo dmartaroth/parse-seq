@@ -1,0 +1,155 @@
+Data count by genotype, age, and sex:
+# A tibble: 12 × 4
+   genotype_grouped age_grouped sex   count
+   <fct>            <chr>       <fct> <int>
+ 1 ctrl             AT          F         7
+ 2 ctrl             AT          M         8
+ 3 ctrl             PT          F        12
+ 4 ctrl             PT          M         8
+ 5 Bmp2 cko         AT          F         3
+ 6 Bmp2 cko         AT          M         3
+ 7 Bmp2 cko         PT          F         6
+ 8 Bmp2 cko         PT          M         3
+ 9 Bmp7 cko         AT          F         5
+10 Bmp7 cko         AT          M         4
+11 Bmp7 cko         PT          F         3
+12 Bmp7 cko         PT          M         2
+[1] "Statistical test results by genotype and age group:"
+$ctrl_AT_ISS
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+  0.1164956 15.9072636
+sample estimates:
+odds ratio 
+  1.307924 
+
+
+$ctrl_AT_SOS
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: two.sided
+
+
+$ctrl_PT_ISS
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+  0.1164956 15.9072636
+sample estimates:
+odds ratio 
+  1.307924 
+
+
+$ctrl_PT_SOS
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: two.sided
+
+
+$`Bmp2 cko_AT_ISS`
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+  0.1164956 15.9072636
+sample estimates:
+odds ratio 
+  1.307924 
+
+
+$`Bmp2 cko_AT_SOS`
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: two.sided
+
+
+$`Bmp2 cko_PT_ISS`
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+  0.1164956 15.9072636
+sample estimates:
+odds ratio 
+  1.307924 
+
+
+$`Bmp2 cko_PT_SOS`
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: two.sided
+
+
+$`Bmp7 cko_AT_ISS`
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+  0.1164956 15.9072636
+sample estimates:
+odds ratio 
+  1.307924 
+
+
+$`Bmp7 cko_AT_SOS`
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: two.sided
+
+
+$`Bmp7 cko_PT_ISS`
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+  0.1164956 15.9072636
+sample estimates:
+odds ratio 
+  1.307924 
+
+
+$`Bmp7 cko_PT_SOS`
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 1
+alternative hypothesis: two.sided
+
+

@@ -1,0 +1,30 @@
+Shapiro-Wilk Normality Test Results:
+# A tibble: 3 × 2
+  genotype shapiro_p_value
+  <fct>              <dbl>
+1 ctrl               0.181
+2 Bmp2 cko           0.371
+3 Bmp7 cko           0.149
+
+Kruskal-Wallis Test Results for Proportion of ColX_area to DAPI_area:
+
+	Kruskal-Wallis rank sum test
+
+data:  proportion_ColX_to_DAPI by genotype
+Kruskal-Wallis chi-squared = 8.0182, df = 2, p-value = 0.01815
+
+
+Pairwise Wilcoxon Test Results with BH Adjustment:
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  filtered_data$proportion_ColX_to_DAPI and filtered_data$genotype 
+
+         ctrl  Bmp2 cko
+Bmp2 cko 0.086 -       
+Bmp7 cko 0.100 0.086   
+
+P value adjustment method: BH 
+Cohen's d for Bmp2 cko vs ctrl: -11.79363 
+Cohen's d for Bmp7 cko vs ctrl: -3.945621 
+Cohen's d for Bmp2 cko vs Bmp7 cko: -2.602495 

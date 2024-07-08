@@ -1,0 +1,53 @@
+Data count by genotype, age, and sex:
+# A tibble: 12 × 4
+   genotype_grouped age_grouped sex   count
+   <fct>            <chr>       <fct> <int>
+ 1 ctrl             AT          F         7
+ 2 ctrl             AT          M         8
+ 3 ctrl             PT          F        12
+ 4 ctrl             PT          M         8
+ 5 Bmp2 cko         AT          F         3
+ 6 Bmp2 cko         AT          M         3
+ 7 Bmp2 cko         PT          F         6
+ 8 Bmp2 cko         PT          M         3
+ 9 Bmp7 cko         AT          F         5
+10 Bmp7 cko         AT          M         4
+11 Bmp7 cko         PT          F         3
+12 Bmp7 cko         PT          M         2
+[1] "Statistical test results by age group:"
+$AT_ISS
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 0.763
+alternative hypothesis: two.sided
+
+
+$AT_SOS
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 0.1288
+alternative hypothesis: two.sided
+
+
+$PT_ISS
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 0.763
+alternative hypothesis: two.sided
+
+
+$PT_SOS
+
+	Fisher's Exact Test for Count Data
+
+data:  table_score
+p-value = 0.1288
+alternative hypothesis: two.sided
+
+

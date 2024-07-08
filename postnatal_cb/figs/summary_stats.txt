@@ -1,0 +1,7 @@
+Summary Statistics:
+# A tibble: 3 × 3
+  genotype mean_proportion sd_proportion
+  <fct>              <dbl>         <dbl>
+1 ctrl               0.835        0.0515
+2 Bmp2 cko           0.141        0.0653
+3 Bmp7 cko           0.423        0.138 

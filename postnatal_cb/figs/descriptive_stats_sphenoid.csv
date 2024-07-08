@@ -1,0 +1,9 @@
+"genotype","mean_missing_psph","sd_missing_psph","median_missing_psph","min_missing_psph","max_missing_psph","mean_cleft","sd_cleft","median_cleft","min_cleft","max_cleft","mean_frag_basisph","sd_frag_basisph","median_frag_basisph","min_frag_basisph","max_frag_basisph","mean_basisph_notch","sd_basisph_notch","median_basisph_notch","min_basisph_notch","max_basisph_notch"
+"Bmp2 ncko",1,0,1,1,1,1.5,0.577350269189626,1.5,1,2,1.5,0.577350269189626,1.5,1,2,1,0,1,1,1
+"Bmp2Bmp7ncko",1,NA,1,1,1,2,NA,2,2,2,2,NA,2,2,2,1,NA,1,1,1
+"Bmp2flBmp7hetncko",1,0,1,1,1,2,0,2,2,2,2,0,2,2,2,1,0,1,1,1
+"Bmp2hetBmp7hetncko",1,0,1,1,1,1,0,1,1,1,1,0,1,1,1,1.5,0.707106781186548,1.5,1,2
+"Bmp7 cko",1.5,0.707106781186548,1.5,1,2,1,0,1,1,1,1,0,1,1,1,2,0,2,2,2
+"Bmp7 ko",1.42857142857143,0.534522483824849,1,1,2,2,0,2,2,2,1,0,1,1,1,2,0,2,2,2
+"Bmp7 ncko",1,0,1,1,1,2,0,2,2,2,1,0,1,1,1,1.8,0.447213595499958,2,1,2
+"ctrl",1,0,1,1,1,1,0,1,1,1,1,0,1,1,1,1.14285714285714,0.377964473009227,1,1,2

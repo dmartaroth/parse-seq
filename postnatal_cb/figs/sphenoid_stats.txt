@@ -1,0 +1,46 @@
+Kruskal-Wallis Test Results for UMAP1:
+
+	Kruskal-Wallis rank sum test
+
+data:  UMAP1 by genotype
+Kruskal-Wallis chi-squared = 21.252, df = 7, p-value = 0.003414
+
+Kruskal-Wallis Test Results for UMAP2:
+
+	Kruskal-Wallis rank sum test
+
+data:  UMAP2 by genotype
+Kruskal-Wallis chi-squared = 20.918, df = 7, p-value = 0.003893
+
+Pairwise Wilcoxon Test Results for UMAP1:
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  plot_data$UMAP1 and plot_data$genotype 
+
+                   Bmp2 ncko Bmp2Bmp7ncko Bmp2flBmp7hetncko Bmp2hetBmp7hetncko Bmp7 cko Bmp7 ko Bmp7 ncko
+Bmp2Bmp7ncko       1.000     -            -                 -                  -        -       -        
+Bmp2flBmp7hetncko  1.000     1.000        -                 -                  -        -       -        
+Bmp2hetBmp7hetncko 1.000     1.000        1.000             -                  -        -       -        
+Bmp7 cko           1.000     1.000        1.000             1.000              -        -       -        
+Bmp7 ko            0.170     1.000        1.000             1.000              1.000    -       -        
+Bmp7 ncko          0.444     1.000        1.000             1.000              1.000    1.000   -        
+ctrl               1.000     1.000        1.000             1.000              1.000    0.016   0.141    
+
+P value adjustment method: bonferroni 
+Pairwise Wilcoxon Test Results for UMAP2:
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  plot_data$UMAP2 and plot_data$genotype 
+
+                   Bmp2 ncko Bmp2Bmp7ncko Bmp2flBmp7hetncko Bmp2hetBmp7hetncko Bmp7 cko Bmp7 ko Bmp7 ncko
+Bmp2Bmp7ncko       1.000     -            -                 -                  -        -       -        
+Bmp2flBmp7hetncko  1.000     1.000        -                 -                  -        -       -        
+Bmp2hetBmp7hetncko 1.000     1.000        1.000             -                  -        -       -        
+Bmp7 cko           1.000     1.000        1.000             1.000              -        -       -        
+Bmp7 ko            1.000     1.000        1.000             1.000              1.000    -       -        
+Bmp7 ncko          1.000     1.000        1.000             1.000              1.000    1.000   -        
+ctrl               1.000     1.000        1.000             1.000              1.000    0.016   0.071    
+
+P value adjustment method: bonferroni 
